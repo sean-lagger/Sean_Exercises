@@ -22,102 +22,90 @@ namespace ConsoleApplication1
 
         public static void guessingGame()
         {
-            string again = "y";
-            while (again == "y")
-            {
-                again = "a";
-                Console.Clear();
-                List<Question> Questions = new List<Question>();
-                //Add new questions here
+            Console.Clear();
+            List<Question> Questions = new List<Question>();
+            //Add new questions here
 
-                Questions.Add(new Question("First name of the first man on the moon", "Neil"));
-                Questions.Add(new Question("What color moves first in checkers?", "Black"));
-                Questions.Add(new Question("On what continent is the Balkan Peninsula?", "Europe"));
-                Questions.Add(new Question("What is the fear of darkness called?", "Scotophobia"));
-                Questions.Add(new Question("What is the female version of the Duke title?", "Duchess"));
+            Questions.Add(new Question("First name of the first man on the moon", "Neil"));
+            Questions.Add(new Question("What color moves first in checkers?", "Black"));
+            Questions.Add(new Question("On what continent is the Balkan Peninsula?", "Europe"));
+            Questions.Add(new Question("What is the fear of darkness called?", "Scotophobia"));
+            Questions.Add(new Question("What is the female version of the Duke title?", "Duchess"));
 
-                centerPrint("Guessing Game!\n");
+            centerPrint("Guessing Game!\n");
 
                 
 
-                int n = Questions.Count;
-                int score = 0;
+            int n = Questions.Count;
+            int score = 0;
 
-                while (n > 0)
+            while (n > 0)
+            {
+                int attempts = 3;
+                int k = rng.Next(n--);
+
+                //Shuffle and display list elements
+                //Displays as it shuffles
+                string entered;
+                Question temp = Questions[k];
+                Questions[k] = Questions[n];
+                Questions[n] = temp;
+
+                Questions[n].display();
+
+                while (attempts > 0 && Questions[n].isCompleted() == false)
                 {
-                    int attempts = 3;
-                    int k = rng.Next(n--);
-                    //Shuffle and display list elements
-                    string entered;
-                    Question temp = Questions[k];
-                    Questions[k] = Questions[n];
-                    Questions[n] = temp;
+                    Console.Write("> ");
+                    entered = Console.ReadLine();
+                    if (entered.Length != 1)
+                    {
+                        Console.WriteLine("Please input only 1 character");
+                    }
+                    else if (Questions[n].checkExists(entered[0]) == false)
+                    {
+                        Console.WriteLine("Wrong Answer. You have " + --attempts + " attempt(s) remaining.\n");
+                    }
 
                     Questions[n].display();
+                    if (Questions[n].isCompleted())
+                        score++;
 
-                    while (attempts > 0 && Questions[n].isCompleted() == false)
-                    {
-                        Console.Write("> ");
-                        entered = Console.ReadLine();
-                        if (entered.Length != 1)
-                        {
-                            Console.WriteLine("Please input only 1 character");
-                        }
-                        else if (Questions[n].checkExists(entered[0]) == false)
-                        {
-                            Console.WriteLine("Wrong Answer. You have " + --attempts + " attempt(s) remaining.\n");
-                        }
-
-                        Questions[n].display();
-                        if (Questions[n].isCompleted())
-                            score++;
-
-                    }
                 }
-
-                centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
-                centerPrint("Would you like to try again? Input 'y' if so.");
-                while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
             }
+
+            centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
         }
 
         public static void stringConversion()
-        {
-            string again = "y";
-            while (again == "y")
+        { 
+            Console.Clear();
+            centerPrint("Hello and welcome to the string conversion program!");
+            centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
+            Console.Write("> ");
+            char[] input = Console.ReadLine().ToCharArray();
+            int offset = 0;
+
+            if (Char.IsUpper(input[0]) && Char.IsLetter(input[0]))
             {
-                again = "a";
-                Console.Clear();
-                centerPrint("Hello and welcome to the string conversion program!");
-                centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
-                Console.Write("> ");
-                char[] input = Console.ReadLine().ToCharArray();
-                int offset = 0;
-
-                if (Char.IsUpper(input[0]) && Char.IsLetter(input[0]))
-                {
-                    offset = 1;
-                }
-
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if(offset%2 == 0 && Char.IsLetter(input[i]))
-                    {
-                        input[i] = Char.ToUpper(input[i]);
-                    }else
-                    {
-                        input[i] = Char.ToLower(input[i]);
-                    }
-
-                   if(Char.IsLetter(input[i]))
-                        offset++;
-                }
-                Console.WriteLine();
-                centerPrint(new string(input));
-                Console.WriteLine();
-                centerPrint("Would you like to try again? Input 'y' if so, 'n' if not.");
-                while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
+                offset = 1;
             }
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if(offset%2 == 0 && Char.IsLetter(input[i]))
+                {
+                    input[i] = Char.ToUpper(input[i]);
+                }else
+                {
+                    input[i] = Char.ToLower(input[i]);
+                }
+
+               if(Char.IsLetter(input[i]))
+                    offset++;
+            }
+            Console.WriteLine();
+            centerPrint(new string(input));
+            Console.WriteLine();
         }
 
 
@@ -158,11 +146,6 @@ namespace ConsoleApplication1
                 else
                     blank[i] = ' ';
             }
-        }
-
-        public int getQLen()
-        {
-            return answer.Length;
         }
 
         public void display()
@@ -213,9 +196,10 @@ namespace ConsoleApplication1
             runEx = run;
         }
 
-        public string getName()
+        public string ExerciseName
         {
-            return exerciseName;
+            get { return exerciseName; }
+           
         }
         
     }
@@ -240,7 +224,7 @@ namespace ConsoleApplication1
         {
             for(int i = 0; i<ex.Count; i++)
             {
-                Program.centerPrint("["+ (i+1) + "] " + ex[i].getName() + "\n");
+                Program.centerPrint("["+ (i+1) + "] " + ex[i].ExerciseName + "\n");
             }
         }
 
@@ -248,7 +232,14 @@ namespace ConsoleApplication1
         {
             try {
                 int i = int.Parse(Console.ReadLine());
-                ex[(i-1)].runEx();
+                string again = "y";
+                while (again == "y")
+                {
+                    again = null;
+                    ex[(i - 1)].runEx();
+                    Program.centerPrint("Would you like to try again? Input 'y' if so.");
+                    while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
+                }
             } catch (Exception e) {
                 Console.WriteLine("Unknown Input. Try again.");
                 return false;
