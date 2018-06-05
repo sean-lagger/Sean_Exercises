@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic; // Lists
 
-//Test Change
-
 namespace ConsoleApplication1
 {
     class Program
