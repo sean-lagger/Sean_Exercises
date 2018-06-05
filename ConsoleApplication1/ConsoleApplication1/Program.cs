@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic; // Lists
 
-//Attempting to apply everything I've learned so far (OOP STYLE).
-//Branch Test
-//Test Credentials
 
 namespace ConsoleApplication1
 {
@@ -29,6 +26,7 @@ namespace ConsoleApplication1
             string again = "y";
             while (again == "y")
             {
+                again = "a";
                 Console.Clear();
                 List<Question> Questions = new List<Question>();
                 //Add new questions here
@@ -36,9 +34,8 @@ namespace ConsoleApplication1
                 Questions.Add(new Question("First name of the first man on the moon", "Neil"));
                 Questions.Add(new Question("What color moves first in checkers?", "Black"));
                 Questions.Add(new Question("On what continent is the Balkan Peninsula?", "Europe"));
-                Questions.Add(new Question("First name of the first man on the moon", "Neil"));
-                Questions.Add(new Question("What color moves first in checkers?", "Black"));
-                Questions.Add(new Question("On what continent is the Balkan Peninsula?", "Europe"));
+                Questions.Add(new Question("What is the fear of darkness called?", "Scotophobia"));
+                Questions.Add(new Question("What is the female version of the Duke title?", "Duchess"));
 
                 centerPrint("Guessing Game!\n");
 
@@ -81,7 +78,7 @@ namespace ConsoleApplication1
 
                 centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
                 centerPrint("Would you like to try again? Input 'y' if so.");
-                while (again != "y" || again != "n") { again = Console.ReadLine(); }
+                while (again != "y" && again != "n") { again = Console.ReadLine(); }
             }
         }
 
