@@ -78,7 +78,7 @@ namespace ConsoleApplication1
 
                 centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
                 centerPrint("Would you like to try again? Input 'y' if so.");
-                while (again != "y" && again != "n") { again = Console.ReadLine(); }
+                while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
             }
         }
 
@@ -132,6 +132,7 @@ namespace ConsoleApplication1
                 exm.add(new Exercise("Guessing Game", guessingGame));
                 exm.add(new Exercise("String Conversion", stringConversion));
                 exm.display();
+                Console.Write("> ");
                 while (exm.pass() == false) ;
             }
         }
@@ -145,6 +146,7 @@ namespace ConsoleApplication1
         private string answer;
         private char[] blank;
         private int correctAnswers = 0;
+
         public Question(string inquiry, string ans)
         {
             qst = inquiry;
