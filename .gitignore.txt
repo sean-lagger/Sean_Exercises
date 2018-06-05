@@ -1,0 +1,2 @@
+/ConsoleApplication1/.vs/
+/ConsoleApplication1/ConsoleApplication1/obj/
