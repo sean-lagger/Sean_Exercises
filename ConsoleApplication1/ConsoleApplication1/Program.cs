@@ -23,7 +23,7 @@ namespace ConsoleApplication1
         public static void guessingGame()
         {
             Random rng = new Random();
-            List<Question> Questions = new List<Question>();
+            var Questions = new List<Question>();
             //Add new questions here
             Questions.Add(new Question("First name of the first man on the moon", "Neil"));
             Questions.Add(new Question("What color moves first in checkers?", "Black"));
@@ -44,7 +44,7 @@ namespace ConsoleApplication1
                 //Shuffle and display list elements
                 //Displays as it shuffles
                 string entered;
-                Question temp = Questions[k];
+                var temp = Questions[k];
                 Questions[k] = Questions[n];
                 Questions[n] = temp;
                 Questions[n].display();
@@ -109,7 +109,7 @@ namespace ConsoleApplication1
             {
                 Console.Clear();
                 centerPrint("Sean's Exercises\n");
-                ExerciseManager exm = new ExerciseManager();
+                var exm = new ExerciseManager();
                 exm.add(new Exercise("Guessing Game", guessingGame));
                 exm.add(new Exercise("String Conversion", stringConversion));
                 exm.display();
