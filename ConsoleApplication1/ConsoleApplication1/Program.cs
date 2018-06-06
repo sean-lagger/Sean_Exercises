@@ -3,12 +3,12 @@ using System.Collections.Generic; // Lists
 
 namespace ConsoleApplication1
 {
-    class Program
+    public class Program
     {
 
         private static Random rng = new Random();
 
-        public static void centerPrint(string toPrint)
+        public static void centerPrint(string toPrint) //Prints text on the center of the console
         {
             double x = (Console.WindowWidth / 2) - (toPrint.Length / 2);
             string init = "";
@@ -25,7 +25,6 @@ namespace ConsoleApplication1
             Console.Clear();
             List<Question> Questions = new List<Question>();
             //Add new questions here
-
             Questions.Add(new Question("First name of the first man on the moon", "Neil"));
             Questions.Add(new Question("What color moves first in checkers?", "Black"));
             Questions.Add(new Question("On what continent is the Balkan Peninsula?", "Europe"));
@@ -33,8 +32,6 @@ namespace ConsoleApplication1
             Questions.Add(new Question("What is the female version of the Duke title?", "Duchess"));
 
             centerPrint("Guessing Game!\n");
-
-                
 
             int n = Questions.Count;
             int score = 0;
@@ -50,7 +47,6 @@ namespace ConsoleApplication1
                 Question temp = Questions[k];
                 Questions[k] = Questions[n];
                 Questions[n] = temp;
-
                 Questions[n].display();
 
                 while (attempts > 0 && Questions[n].isCompleted() == false)
@@ -127,44 +123,47 @@ namespace ConsoleApplication1
 
     }
 
-    class Question
+    public class Question
     {
-        private string qst;
-        private string answer;
-        private char[] blank;
+        private string Qst { get; set; }
         private int correctAnswers = 0;
+
+        private string Answer { get; set; }
+
+        private char[] Blank { get; set; }
 
         public Question(string inquiry, string ans)
         {
-            qst = inquiry;
-            answer = ans;
-            blank = new char[answer.Length * 2];
-            for (int i = 0; i < blank.Length; i++)
+            Qst = inquiry;
+            Answer = ans;
+            Blank = new char[Answer.Length * 2];
+            for (int i = 0; i < Blank.Length; i++)
             {
                 if (i % 2 == 0)
-                    blank[i] = '_';
+                    Blank[i] = '_';
                 else
-                    blank[i] = ' ';
+                    Blank[i] = ' ';
             }
         }
 
+
         public void display()
         {
-            Program.centerPrint(qst + "\n");
-            Program.centerPrint(new string(blank) + "\n");
+            Program.centerPrint(Qst + "\n");
+            Program.centerPrint(new string(Blank) + "\n");
         }
 
         public bool checkExists(char a )
         {
             bool has_character = false;
             char testChar = Char.ToLower(a);
-            for (int i = 0; i< answer.Length; i++)
+            for (int i = 0; i< Answer.Length; i++)
             {
-                string lowerAnswer = answer.ToLower();
-                if(lowerAnswer[i] == testChar && testChar != Char.ToLower(blank[i * 2]))
+                string lowerAnswer = Answer.ToLower();
+                if(lowerAnswer[i] == testChar && testChar != Char.ToLower(Blank[i * 2]))
                 {
                     has_character = true;
-                    blank[i * 2] = answer[i];
+                    Blank[i * 2] = Answer[i];
                     correctAnswers++;
                 }
 
@@ -175,7 +174,7 @@ namespace ConsoleApplication1
 
         public bool isCompleted()
         {
-            if(correctAnswers == answer.Length)
+            if(correctAnswers == Answer.Length)
             {
                 return true;
             }else
@@ -185,46 +184,33 @@ namespace ConsoleApplication1
         }
     }
 
-    class Exercise
+    public class Exercise
     {
-        private string exerciseName;
+        public string ExerciseName { get; }
         public Action runEx;
 
         public Exercise(string name, Action run)
         {
-            exerciseName = name;
+            ExerciseName = name;
             runEx = run;
-        }
-
-        public string ExerciseName
-        {
-            get { return exerciseName; }
-           
         }
         
     }
 
-
-
-    class ExerciseManager //Handles all the exercises I plan to add in the future
+    public class ExerciseManager //Handles all the exercises I plan to add in the future
     {
-        private List<Exercise> ex = new List<Exercise>();
-
-        public ExerciseManager()
-        {
-
-        }
+        private List<Exercise> ExList = new List<Exercise>();
 
         public void add(Exercise exercise)
         {
-            ex.Add(exercise);
+            ExList.Add(exercise);
         }
 
         public void display()
         {
-            for(int i = 0; i<ex.Count; i++)
+            for(int i = 0; i<ExList.Count; i++)
             {
-                Program.centerPrint("["+ (i+1) + "] " + ex[i].ExerciseName + "\n");
+                Program.centerPrint("["+ (i+1) + "] " + ExList[i].ExerciseName + "\n");
             }
         }
 
@@ -236,7 +222,7 @@ namespace ConsoleApplication1
                 while (again == "y")
                 {
                     again = null;
-                    ex[(i - 1)].runEx();
+                    ExList[(i - 1)].runEx();
                     Program.centerPrint("Would you like to try again? Input 'y' if so.");
                     while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
                 }
@@ -247,6 +233,4 @@ namespace ConsoleApplication1
             return true;
         }
     }
-
-
 }
