@@ -6,7 +6,7 @@ namespace ConsoleApplication1
     public class Program
     {
 
-        private static Random rng = new Random();
+        
 
         public static void centerPrint(string toPrint) //Prints text on the center of the console
         {
@@ -22,7 +22,7 @@ namespace ConsoleApplication1
 
         public static void guessingGame()
         {
-            Console.Clear();
+            Random rng = new Random();
             List<Question> Questions = new List<Question>();
             //Add new questions here
             Questions.Add(new Question("First name of the first man on the moon", "Neil"));
@@ -74,7 +74,6 @@ namespace ConsoleApplication1
 
         public static void stringConversion()
         { 
-            Console.Clear();
             centerPrint("Hello and welcome to the string conversion program!");
             centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
             Console.Write("> ");
@@ -103,7 +102,6 @@ namespace ConsoleApplication1
             centerPrint(new string(input));
             Console.WriteLine();
         }
-
 
         static void Main(string[] args)
         {
@@ -223,6 +221,7 @@ namespace ConsoleApplication1
                 while (again == "y")
                 {
                     again = null;
+                    Console.Clear();
                     ExList[(i - 1)].runEx();
                     Program.centerPrint("Would you like to try again? Input 'y' if so.");
                     while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
