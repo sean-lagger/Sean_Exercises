@@ -113,7 +113,6 @@ namespace ConsoleApplication1
                 exm.add(new Exercise("Guessing Game", guessingGame));
                 exm.add(new Exercise("String Conversion", stringConversion));
                 exm.display();
-                Console.Write("> ");
                 while (exm.pass() == false) ;
             }
         }
@@ -123,13 +122,6 @@ namespace ConsoleApplication1
 
     public class Question
     {
-        private string Qst { get; set; }
-        private int CorrectAnswers { get; set; }
-
-        private string Answer { get; set; }
-
-        private char[] Blank { get; set; }
-
         public Question(string inquiry, string ans)
         {
             CorrectAnswers = 0;
@@ -145,6 +137,12 @@ namespace ConsoleApplication1
             }
         }
 
+        private string Qst { get; set; }
+        private int CorrectAnswers { get; set; }
+
+        private string Answer { get; set; }
+
+        private char[] Blank { get; set; }
 
         public void display()
         {
@@ -185,15 +183,14 @@ namespace ConsoleApplication1
 
     public class Exercise
     {
-        public string ExerciseName { get; }
-        public Action runEx;
-
         public Exercise(string name, Action run)
         {
             ExerciseName = name;
             runEx = run;
         }
-        
+
+        public string ExerciseName { get; }
+        public Action runEx;        
     }
 
     public class ExerciseManager //Handles all the exercises I plan to add in the future
@@ -216,6 +213,7 @@ namespace ConsoleApplication1
         public bool pass()
         {
             try {
+                Console.Write("> ");
                 int i = int.Parse(Console.ReadLine());
                 string again = "y";
                 while (again == "y")
