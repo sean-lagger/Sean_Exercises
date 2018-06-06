@@ -126,7 +126,7 @@ namespace ConsoleApplication1
     public class Question
     {
         private string Qst { get; set; }
-        private int correctAnswers = 0;
+        private int CorrectAnswers { get; set; }
 
         private string Answer { get; set; }
 
@@ -134,6 +134,7 @@ namespace ConsoleApplication1
 
         public Question(string inquiry, string ans)
         {
+            CorrectAnswers = 0;
             Qst = inquiry;
             Answer = ans;
             Blank = new char[Answer.Length * 2];
@@ -164,7 +165,7 @@ namespace ConsoleApplication1
                 {
                     has_character = true;
                     Blank[i * 2] = Answer[i];
-                    correctAnswers++;
+                    CorrectAnswers++;
                 }
 
             }
@@ -174,7 +175,7 @@ namespace ConsoleApplication1
 
         public bool isCompleted()
         {
-            if(correctAnswers == Answer.Length)
+            if(CorrectAnswers == Answer.Length)
             {
                 return true;
             }else
