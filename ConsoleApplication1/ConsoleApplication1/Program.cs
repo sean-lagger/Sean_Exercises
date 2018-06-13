@@ -1,24 +1,15 @@
 ﻿using System;
 using System.Collections.Generic; // Lists
+using ConsoleManipulation;
+using ConsoleForm;
 
 namespace ConsoleApplication1
 {
     public class Program
     {
+        public static CForm MainForm;
 
-        public static void centerPrint(string toPrint) //Prints text on the center of the console ## Could be a reusable library component
-        {
-            double x = (Console.WindowWidth / 2) - (toPrint.Length / 2);
-            string init = "";
-            for (int i = 0; i < Math.Ceiling(x); i++)
-            {
-                init += " ";
-            }
-
-            Console.WriteLine(init + toPrint);
-        }
-
-        public static void guessingGame()
+        public static void guessingGame(Exercise ex)
         {
             Random rng = new Random();
             var Questions = new List<Question>();
@@ -29,7 +20,8 @@ namespace ConsoleApplication1
             Questions.Add(new Question("What is the fear of darkness called?", "Scotophobia"));
             Questions.Add(new Question("What is the female version of the Duke title?", "Duchess"));
 
-            centerPrint("Guessing Game!\n");
+
+            ConsoleManipulator.centerPrint("Guessing Game!\n");
 
             int n = Questions.Count;
             int score = 0;
@@ -67,13 +59,13 @@ namespace ConsoleApplication1
                 }
             }
 
-            centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
+            ConsoleManipulator.centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
         }
 
-        public static void stringConversion()
-        { 
-            centerPrint("Hello and welcome to the string conversion program!");
-            centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
+        public static void stringConversion(Exercise ex)
+        {
+            ConsoleManipulator.centerPrint("Hello and welcome to the string conversion program!");
+            ConsoleManipulator.centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
             Console.Write("> ");
             char[] input = Console.ReadLine().ToCharArray();
             int offset = 0;
@@ -97,20 +89,26 @@ namespace ConsoleApplication1
                     offset++;
             }
             Console.WriteLine();
-            centerPrint(new string(input));
+            ConsoleManipulator.centerPrint(new string(input));
             Console.WriteLine();
         }
 
         static void Main(string[] args)
         {
+            //Initialize Form Configs
+
+
+
+
+
             while (true)
             {
                 Console.Clear();
-                centerPrint("Sean's Exercises\n");
-                ExerciseManager.add(new Exercise("Guessing Game", guessingGame));
-                ExerciseManager.add(new Exercise("String Conversion", stringConversion));
-                ExerciseManager.display();
-                while (ExerciseManager.pass() == false) ;
+                ConsoleManipulator.centerPrint("Sean's Exercises\n");
+                ExerciseManager.Add(new Exercise("Guessing Game", guessingGame));
+                ExerciseManager.Add(new Exercise("String Conversion", stringConversion));
+                ExerciseManager.Display();
+                while (ExerciseManager.Pass() == false) ;
             }
         }
 

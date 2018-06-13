@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleManipulation;
 
 namespace ConsoleApplication1
 {
@@ -10,20 +11,20 @@ namespace ConsoleApplication1
     {
         private static List<Exercise> ExList = new List<Exercise>();
 
-        public static void add(this Exercise exercise)
+        public static void Add(Exercise exercise)
         {
             ExList.Add(exercise);
         }
 
-        public static void display()
+        public static void Display()
         {
             for (int i = 0; i < ExList.Count; i++)
             {
-                Program.centerPrint("[" + (i + 1) + "] " + ExList[i].ExerciseName + "\n");
+                ConsoleManipulator.centerPrint("[" + (i + 1) + "] " + ExList[i].ExerciseName + "\n");
             }
         }
 
-        public static bool pass()
+        public static bool Pass()
         {
             try
             {
@@ -34,8 +35,9 @@ namespace ConsoleApplication1
                 {
                     again = null;
                     Console.Clear();
-                    ExList[(i - 1)].runEx();
-                    Program.centerPrint("Would you like to try again? Input 'y' if so.");
+                    Program.MainForm = ExList[(i - 1)].ExForm;
+                    ExList[(i - 1)].runEx(ExList[(i - 1)]);
+                    ConsoleManipulator.centerPrint("Would you like to try again? Input 'y' if so.");
                     while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
                 }
             }

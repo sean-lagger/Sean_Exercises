@@ -5,6 +5,12 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{7E613E2B-19DE-4258-90F1-5E3BD92D095C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleManipulation", "ClassLibrary1\ConsoleManipulation.csproj", "{0C98A3B4-6EC5-4699-A7E5-5BFEF8128B7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6AC0D594-334B-487E-8726-8F7F91D48876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleForm", "ConsoleForm\ConsoleForm.csproj", "{95E051BA-8F2D-412B-BAFB-64D3AFC0C17E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +21,20 @@ Global
 		{7E613E2B-19DE-4258-90F1-5E3BD92D095C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E613E2B-19DE-4258-90F1-5E3BD92D095C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E613E2B-19DE-4258-90F1-5E3BD92D095C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C98A3B4-6EC5-4699-A7E5-5BFEF8128B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C98A3B4-6EC5-4699-A7E5-5BFEF8128B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C98A3B4-6EC5-4699-A7E5-5BFEF8128B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C98A3B4-6EC5-4699-A7E5-5BFEF8128B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E051BA-8F2D-412B-BAFB-64D3AFC0C17E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E051BA-8F2D-412B-BAFB-64D3AFC0C17E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E051BA-8F2D-412B-BAFB-64D3AFC0C17E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E051BA-8F2D-412B-BAFB-64D3AFC0C17E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C98A3B4-6EC5-4699-A7E5-5BFEF8128B7F} = {6AC0D594-334B-487E-8726-8F7F91D48876}
+		{95E051BA-8F2D-412B-BAFB-64D3AFC0C17E} = {6AC0D594-334B-487E-8726-8F7F91D48876}
 	EndGlobalSection
 EndGlobal

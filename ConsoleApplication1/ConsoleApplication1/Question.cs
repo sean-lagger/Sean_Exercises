@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleManipulation;
 
 namespace ConsoleApplication1
 {
@@ -30,8 +31,8 @@ namespace ConsoleApplication1
 
         public void display()
         {
-            Program.centerPrint(Qst + "\n");
-            Program.centerPrint(new string(Blank) + "\n");
+            ConsoleManipulator.centerPrint(Qst + "\n");
+            ConsoleManipulator.centerPrint(new string(Blank) + "\n");
         }
 
         public bool checkExists(char a)
