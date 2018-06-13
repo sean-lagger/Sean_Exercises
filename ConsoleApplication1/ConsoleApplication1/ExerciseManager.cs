@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleManipulation;
+using ConsoleForm;
 
 namespace ConsoleApplication1
 {
@@ -11,8 +12,16 @@ namespace ConsoleApplication1
     {
         private static List<Exercise> ExList = new List<Exercise>();
 
+        public static int ExCount = ExList.Count;
+
         public static void Add(Exercise exercise)
         {
+            ElementSelectable es = new ElementSelectable(ExList.Count, exercise.ExerciseName);
+            double x = Console.WindowWidth / 2 - (es.ContentText.Length / 2);
+            es.X = ConsoleManipulator.center(Console.WindowWidth, es.ContentText.Length);
+            es.Y = 4 + ExList.Count() * 2;
+            es.Centered = true;
+            Program.MainForm.AddElement(es);
             ExList.Add(exercise);
         }
 

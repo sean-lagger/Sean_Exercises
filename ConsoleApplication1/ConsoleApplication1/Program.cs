@@ -11,6 +11,7 @@ namespace ConsoleApplication1
 
         public static void guessingGame(Exercise ex)
         {
+            var GuessForm = new CForm(80, 10);
             Random rng = new Random();
             var Questions = new List<Question>();
             //Add new questions here
@@ -64,6 +65,8 @@ namespace ConsoleApplication1
 
         public static void stringConversion(Exercise ex)
         {
+
+            var STCForm = new CForm(80, 10);
             ConsoleManipulator.centerPrint("Hello and welcome to the string conversion program!");
             ConsoleManipulator.centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
             Console.Write("> ");
@@ -96,19 +99,29 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             //Initialize Form Configs
+            MainForm = new CForm(80, 15);
+            MainForm.AddElement(new ElementText("Sean's Exercises", ConsoleManipulator.center(Console.WindowWidth, "Sean's Exercises".Length) , 1));
 
 
-
-
-
-            while (true)
-            {
                 Console.Clear();
-                ConsoleManipulator.centerPrint("Sean's Exercises\n");
+                //ConsoleManipulator.centerPrint("Sean's Exercises\n");
                 ExerciseManager.Add(new Exercise("Guessing Game", guessingGame));
                 ExerciseManager.Add(new Exercise("String Conversion", stringConversion));
-                ExerciseManager.Display();
-                while (ExerciseManager.Pass() == false) ;
+            while (true)
+            {
+                MainForm.Refresh();
+                ConsoleKey key = Console.ReadKey().Key;
+                if(key == ConsoleKey.UpArrow)
+                {
+                    MainForm.SelectedIndex--;
+                }else if(key == ConsoleKey.DownArrow)
+                {
+                    MainForm.SelectedIndex++;
+                }else
+                {
+
+                }
+                //while (ExerciseManager.Pass() == false) ;
             }
         }
 

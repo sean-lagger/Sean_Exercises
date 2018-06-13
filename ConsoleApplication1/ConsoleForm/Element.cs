@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleForm
 {
-    public abstract class Element
+    public class Element
     {
         private static int highest_id = 0;
 
@@ -19,48 +19,40 @@ namespace ConsoleForm
             Length = 1;
         }
 
-        public Element(string type)
+        public Element(string type): this()
         {
             ElementType = type;
         }
 
-        public Element(string type, int px, int py)
+        public Element(int px, int py) : this()
         {
-            ElementType = type;
             X = px;
             Y = py;
         }
+
+
+        public Element(string type, int px, int py): this(type)
+        {
+            X = px;
+            Y = py;
+      }
+
+
 
         public virtual void Display()
         {
             Console.CursorLeft = X;
             Console.CursorTop = Y;
-            if (IsBordered)
-            {
-                ContentText = "["+ ContentText + "]";
-            }
-            Console.Write(ContentText);  //run base.Display() 
         }
 
-        public int ID {
-
-            get
-            {
-                return ID;
-            }
-
-            private set
-            {
-
-            }
-        }
+        public int ID { get; set; }
         public int X { get; set; } 
         public int Y { get; set; }
-        public int Width { get; set; }
+        public CForm ParentForm { get; set; }
+        public bool Centered { get; set; }
         public int Length { get; set; } //offset of two if borders are enabled
-        public bool IsBordered { get; set; }
-        public string ElementType { get; private set; }
-        public string ContentText { get; set; } //the text content of the element (e.g the string that it displays) 
+        public string ElementType { get; protected set; }
+        
         
     }
 }

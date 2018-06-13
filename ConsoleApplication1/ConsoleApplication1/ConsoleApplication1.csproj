@@ -57,6 +57,10 @@
       <Project>{0c98a3b4-6ec5-4699-a7e5-5bfef8128b7f}</Project>
       <Name>ConsoleManipulation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ConsoleForm\ConsoleForm.csproj">
+      <Project>{95e051ba-8f2d-412b-bafb-64d3afc0c17e}</Project>
+      <Name>ConsoleForm</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -20,6 +20,12 @@ namespace ConsoleManipulation
             Console.WriteLine(init + toPrint);
         }
 
+        public static int center(double width, double length)
+        {
+            double field = (width / 2) - (length / 2);
+            return (int)Math.Ceiling(field);
+        }
+
         public static void EntryField()
         {
 
