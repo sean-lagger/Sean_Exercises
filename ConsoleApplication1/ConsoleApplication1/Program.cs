@@ -7,11 +7,12 @@ namespace ConsoleApplication1
 {
     public class Program
     {
+        public static CForm CurrentForm;
         public static CForm MainForm;
 
         public static void guessingGame(Exercise ex)
         {
-            var GuessForm = new CForm(80, 10);
+            Console.Clear();
             Random rng = new Random();
             var Questions = new List<Question>();
             //Add new questions here
@@ -20,12 +21,41 @@ namespace ConsoleApplication1
             Questions.Add(new Question("On what continent is the Balkan Peninsula?", "Europe"));
             Questions.Add(new Question("What is the fear of darkness called?", "Scotophobia"));
             Questions.Add(new Question("What is the female version of the Duke title?", "Duchess"));
+            
+            //Elements
+            //Question Field
+            ElementText QuestionField = new ElementText();
+            QuestionField.Y = 4;
 
+            //Answer Input Field
+            ElementInput AnswerField = new ElementInput(0);
+            AnswerField.X = ConsoleManipulator.center(Console.WindowWidth, AnswerField.ContentText.Length);
+            AnswerField.Y = 10;
+            AnswerField.MaxInputLength = 2;
+            AnswerField.ReplaceOnMax = true;
 
-            ConsoleManipulator.centerPrint("Guessing Game!\n");
+            //Blank Field
+            ElementText BlankField = new ElementText();
+            BlankField.Y = 7;
 
+            //Error Field
+            ElementText ErrorField = new ElementText();
+            ErrorField.ContentText = "You have 3 Attempts Remaining";
+            ErrorField.X = ConsoleManipulator.center(Console.WindowWidth, ErrorField.ContentText.Length);
+            ErrorField.Y = 14;
+
+            var GuessForm = new CForm(80, 20);
+            GuessForm.AddElement(new ElementText("--Guessing Game--", ConsoleManipulator.center(Console.WindowWidth, "--Guessing Game--".Length), 1));
+            GuessForm.AddElement(new ElementText("Press Escape to return to Main Menu", ConsoleManipulator.center(Console.WindowWidth, "Press Escape to return to Main Menu".Length), 18));
+            GuessForm.AddElement(AnswerField);
+            GuessForm.AddElement(QuestionField);
+            GuessForm.AddElement(BlankField);
+            GuessForm.AddElement(ErrorField);
+            CurrentForm = GuessForm;
+            
             int n = Questions.Count;
             int score = 0;
+            bool escape = false;
 
             while (n > 0)
             {
@@ -38,29 +68,77 @@ namespace ConsoleApplication1
                 var temp = Questions[k];
                 Questions[k] = Questions[n];
                 Questions[n] = temp;
-                Questions[n].display();
+
+                QuestionField.ContentText = Questions[n].Qst;
+                QuestionField.X = ConsoleManipulator.center(Console.WindowWidth, QuestionField.ContentText.Length);
+                BlankField.ContentText = new string(Questions[n].Blank);
+                BlankField.X = ConsoleManipulator.center(Console.WindowWidth, BlankField.ContentText.Length);
+                bool skip;
+                bool isWrong = false;
+                ErrorField.ContentText = "You have " + attempts + " Attempts Remaining";
+                ErrorField.X = ConsoleManipulator.center(Console.WindowWidth, ErrorField.ContentText.Length);
+                CurrentForm.Refresh();
 
                 while (attempts > 0 && Questions[n].isCompleted() == false)
                 {
-                    Console.Write("> ");
-                    entered = Console.ReadLine();
-                    if (entered.Length != 1)
-                    {
-                        Console.WriteLine("Please input only 1 character");
-                    }
-                    else if (Questions[n].checkExists(entered[0]) == false)
-                    {
-                        Console.WriteLine("Wrong Answer. You have " + --attempts + " attempt(s) remaining.\n");
-                    }
 
-                    Questions[n].display();
-                    if (Questions[n].isCompleted())
-                        score++;
+                    ConsoleKeyInfo PKey = Console.ReadKey(true);
+                        if (PKey.Key == ConsoleKey.Backspace)
+                        {
+                            CurrentForm.popChar();
+                        }
+                        else if (Char.IsLetter(PKey.KeyChar))
+                        {
+                            CurrentForm.pushChar(PKey.KeyChar);
+                        } else if (PKey.Key == ConsoleKey.Enter && AnswerField.Input != null && AnswerField.Input != String.Empty)
+                        {
+                            if (Questions[n].checkExists(AnswerField.Input[0]) == false)
+                            {
+                                --attempts;
+                                ErrorField.ContentText = "You have " + attempts + " Attempts Remaining";
+                            }
+                            AnswerField.Input = "";
+                        } else if (PKey.Key == ConsoleKey.Escape)
+                        {
+                            escape = true;
+                            break;
+                        }
+                        
+                        BlankField.ContentText = new string(Questions[n].Blank);
+                        BlankField.X = ConsoleManipulator.center(Console.WindowWidth, BlankField.ContentText.Length);
+                        AnswerField.X = ConsoleManipulator.center(Console.WindowWidth, AnswerField.ContentText.Length);
 
+                        if (Questions[n].isCompleted())
+                        {
+                            score++;
+                            ErrorField.ContentText = "Correct! Press Any Key to Proceed!";
+                            ErrorField.X = ConsoleManipulator.center(Console.WindowWidth, ErrorField.ContentText.Length);
+                            CurrentForm.Refresh();
+                            Console.ReadKey(true);
+                            break;
+                        }
+                         CurrentForm.Refresh();
+                }
+                if(escape == true)
+                {
+                    break;
                 }
             }
-
-            ConsoleManipulator.centerPrint("You got " + score + " out of " + Questions.Count + " questions correct!");
+            if (!escape)
+            {
+                if (score > 0)
+                {
+                    ErrorField.ContentText = "Congratulations! You got " + score + " out of " + Questions.Count + " correct answers. Splendid Job!";
+                }
+                else
+                {
+                    ErrorField.ContentText = "You got " + score + " out of " + Questions.Count + " correct answers. Better luck next time!";
+                }
+                ErrorField.X = ConsoleManipulator.center(Console.WindowWidth, ErrorField.ContentText.Length);
+                CurrentForm.Refresh();
+                Console.ReadKey(true);
+            }
+            CurrentForm = MainForm;
         }
 
         public static void stringConversion(Exercise ex)
@@ -107,28 +185,26 @@ namespace ConsoleApplication1
                 //ConsoleManipulator.centerPrint("Sean's Exercises\n");
                 ExerciseManager.Add(new Exercise("Guessing Game", guessingGame));
                 ExerciseManager.Add(new Exercise("String Conversion", stringConversion));
+            CurrentForm = MainForm;
             while (true)
             {
-                MainForm.Refresh();
-                ConsoleKey key = Console.ReadKey().Key;
-                if(key == ConsoleKey.UpArrow)
+                CurrentForm.Refresh();
+                ConsoleKeyInfo PKey = Console.ReadKey(true);
+                if(PKey.Key == ConsoleKey.UpArrow)
                 {
-                    MainForm.SelectedIndex--;
-                }else if(key == ConsoleKey.DownArrow)
+                    CurrentForm.SelectedIndex--;
+                }else if(PKey.Key == ConsoleKey.DownArrow)
                 {
-                    MainForm.SelectedIndex++;
-                }else
+                    CurrentForm.SelectedIndex++;
+                }else if(Char.IsLetter(PKey.KeyChar) == true)
                 {
-
+                    CurrentForm.pushChar(PKey.KeyChar);
+                }else if(PKey.Key == ConsoleKey.Enter)
+                {
+                    ExerciseManager.Pass(CurrentForm.SelectedIndex);
                 }
                 //while (ExerciseManager.Pass() == false) ;
             }
         }
-
-
     }
-
-    
-
-    
 }

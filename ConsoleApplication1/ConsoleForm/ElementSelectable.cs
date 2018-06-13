@@ -20,6 +20,7 @@ namespace ConsoleForm
             ElementType = "Selectable";
         }
 
+        //Properties
         public int Index { get; private set; } 
 
         public override void Display()

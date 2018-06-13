@@ -24,7 +24,7 @@ namespace ConsoleApplication1
             }
         }
         private int CorrectAnswers { get; set; }
-        private char[] Blank { get; set; }
+        public char[] Blank { get; set; }
 
         public string Qst { get; set; }
         public string Answer { get; private set; }

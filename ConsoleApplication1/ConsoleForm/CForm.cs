@@ -12,6 +12,7 @@ namespace ConsoleForm
         public CForm()
         {
             SelectedIndex = 0;
+            Console.CursorVisible = false;
         }
 
         public CForm(int c_width, int c_height):this()
@@ -22,6 +23,7 @@ namespace ConsoleForm
 
         //Properties
         public List<Element> Elements = new List<Element>();
+        private List<ElementSelectable> Selectables = new List<ElementSelectable>();
         public String FormName { get; set; }
 
         public int SelectedIndex {
@@ -51,30 +53,53 @@ namespace ConsoleForm
         {
             get
             {
-                return Elements[SelectedIndex].ElementType;
+                return Selectables[SelectedIndex].ElementType;
             }
         }
+
+        public Element SelectedElement
+        {
+            get
+            {
+                return Selectables[SelectedIndex];
+            }
+        }
+
         public void AddElement(Element e)
         {
-            if(e.ElementType == "Selectable")
+            e.ParentForm = this;
+            if (e.ElementType == "Selectable" || e.ElementType == "Input")
             {
                 _maxIndex++;
+                Selectables.Add(e as ElementSelectable);
             }
 
-            e.ParentForm = this;
+           
             Elements.Add(e);
+        }
+
+        public void pushChar (char key)
+        {
+            if (Selected == "Input")
+            {
+                ElementInput input = SelectedElement as ElementInput;
+                input.Input += key;
+
+            }
+        }
+
+        public void popChar()
+        {
+            ElementInput input = SelectedElement as ElementInput;
+            if (Selected == "Input" && input.Input.Length > 0 && input.ReplaceOnMax != true)
+            {
+                input.Input = input.Input.Remove(input.Input.Length - 1);
+            }
         }
 
         public void Refresh() //Redraw all elements
         {
             Console.Clear();
-            if(Selected != "Input")
-            {
-                Console.CursorVisible = false;
-            }else
-            {
-                Console.CursorVisible = true;
-            }
             foreach (Element e in Elements)
             {
                 e.Display();

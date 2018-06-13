@@ -33,28 +33,9 @@ namespace ConsoleApplication1
             }
         }
 
-        public static bool Pass()
+        public static bool Pass(int i)
         {
-            try
-            {
-                Console.Write("> ");
-                int i = int.Parse(Console.ReadLine());
-                string again = "y";
-                while (again == "y")
-                {
-                    again = null;
-                    Console.Clear();
-                    Program.MainForm = ExList[(i - 1)].ExForm;
-                    ExList[(i - 1)].runEx(ExList[(i - 1)]);
-                    ConsoleManipulator.centerPrint("Would you like to try again? Input 'y' if so.");
-                    while (again != "y" && again != "n") { Console.Write("> "); again = Console.ReadLine(); Console.WriteLine("Unknown Input. Try again."); }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unknown Input. Try again.");
-                return false;
-            }
+            ExList[i].runEx(ExList[i]);
             return true;
         }
     }

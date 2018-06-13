@@ -8,20 +8,48 @@ namespace ConsoleForm
 {
     public class ElementInput : ElementSelectable
     {
-        ElementInput(int index) : base(index)
+        private string _input;
+
+        public ElementInput(int index) : base(index)
         {
+            _text = " ";
             ElementType = "Input";
             Input = "";
         }
 
+        public string Input
+        {
+            get
+            {
+                return _input;
+            }
+
+            set
+            {
+                if(value.Length < MaxInputLength)
+                {
+                    _input = value;
+                }else
+                {
+                    if (ReplaceOnMax)
+                    {
+                        _input = value[1].ToString();
+                    }
+                }
+            }
+        }
+
+        public int MaxInputLength { get; set; }
+        public bool ReplaceOnMax { get; set; } //Replace Input field with next character once the Maximum input length has been reached (Designed for Guessing Game) else, Input field will not accept any more inputs.
+        public bool Eraseable { get; set; } //Whether or not the user can backspace;
+
         public override void Display()
         {
-            ContentText = ">" + Input + "<";
-            X -= 2;
+            _text = ">" + Input + "<";
             base.Display();
         }
 
-        public string Input { get; set; }
+
 
     }
 }

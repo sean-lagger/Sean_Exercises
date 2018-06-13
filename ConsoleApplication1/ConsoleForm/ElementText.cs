@@ -33,12 +33,19 @@ namespace ConsoleForm
 
         public override void Display()
         {
-            if (IsBordered)
+            int Temp_X = X;
+            if (IsBordered) // DON'T USE YET
             {
                 ContentText = "[" + ContentText + "]";
             }else
             {
             }
+
+            if (Centered)
+            {
+              //  X = 
+            }
+
             base.Display();
             Console.Write(ContentText);
         }
