@@ -15,13 +15,17 @@ namespace ConsoleForm
             Console.CursorVisible = false;
         }
 
-        public CForm(int c_width, int c_height):this()
+        public CForm(int c_width, int c_height) : this()
         {
-            Console.WindowWidth = c_width;
-            Console.WindowHeight = c_height;
+            Width = c_width;
+            Height = c_height;
+            Console.WindowWidth = Width;
+            Console.WindowHeight = Height;
         }
 
         //Properties
+        public int Width { get; private set; }
+        public int Height { get; private set; }
         public List<Element> Elements = new List<Element>();
         private List<ElementSelectable> Selectables = new List<ElementSelectable>();
         public String FormName { get; set; }
@@ -99,11 +103,17 @@ namespace ConsoleForm
 
         public void Refresh() //Redraw all elements
         {
+            if (Console.WindowWidth != Width || Console.WindowHeight != Height)
+            {
+                Console.WindowWidth = Width;
+                Console.WindowHeight = Height;
+            }
             Console.Clear();
             foreach (Element e in Elements)
             {
                 e.Display();
             }
+
         }
 
     }

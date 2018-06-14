@@ -144,11 +144,53 @@ namespace ConsoleApplication1
         public static void stringConversion(Exercise ex)
         {
 
-            var STCForm = new CForm(80, 10);
-            ConsoleManipulator.centerPrint("Hello and welcome to the string conversion program!");
-            ConsoleManipulator.centerPrint("Input a string and I will convert the alternating characters into their inverse cases.");
-            Console.Write("> ");
-            char[] input = Console.ReadLine().ToCharArray();
+            var STCForm = new CForm(100, 11);
+
+            //Input
+            ElementInput InputField = new ElementInput(0);
+            InputField.X = ConsoleManipulator.center(Console.WindowWidth, InputField.ContentText.Length);
+            InputField.Y =7;
+            InputField.MaxInputLength = 82;
+
+            //Result
+            ElementText ErrorField = new ElementText();
+            ErrorField.ContentText = " ";
+            ErrorField.X = ConsoleManipulator.center(Console.WindowWidth, ErrorField.ContentText.Length);
+            ErrorField.Y = 5;
+
+            STCForm.AddElement(new ElementText("String Conversion Program", ConsoleManipulator.center(Console.WindowWidth, "String Conversion Program".Length), 1));
+            STCForm.AddElement(new ElementText("Input a string and I will convert the alternating characters into their inverse cases.", ConsoleManipulator.center(Console.WindowWidth, "Input a string and I will convert the alternating characters into their inverse cases.".Length), 2));
+            STCForm.AddElement(InputField);
+            STCForm.AddElement(ErrorField);
+
+            CurrentForm = STCForm;
+            CurrentForm.Refresh();
+
+            while (true)
+            {
+                ConsoleKeyInfo PKey = Console.ReadKey(true);
+                if (PKey.Key == ConsoleKey.Backspace)
+                {
+                    CurrentForm.popChar();
+                }
+                else if (Char.IsSymbol(PKey.KeyChar) || Char.IsLetterOrDigit(PKey.KeyChar) || Char.IsPunctuation(PKey.KeyChar) || Char.IsSeparator(PKey.KeyChar))
+                {
+                    CurrentForm.pushChar(PKey.KeyChar);
+                }
+                else if (PKey.Key == ConsoleKey.Enter && InputField.Input != null && InputField.Input != String.Empty)
+                {
+                    break;
+                }
+                else if (PKey.Key == ConsoleKey.Escape)
+                {
+                   // escape = true;
+                    //break;
+                }
+                InputField.X = ConsoleManipulator.center(Console.WindowWidth, InputField.ContentText.Length);
+                CurrentForm.Refresh();
+            }
+
+            char[] input = InputField.Input.ToCharArray();
             int offset = 0;
 
             if (Char.IsUpper(input[0]) && Char.IsLetter(input[0]))
@@ -169,19 +211,23 @@ namespace ConsoleApplication1
                if(Char.IsLetter(input[i]))
                     offset++;
             }
-            Console.WriteLine();
-            ConsoleManipulator.centerPrint(new string(input));
-            Console.WriteLine();
+
+            ErrorField.ContentText = new string(input);
+            ErrorField.X = ConsoleManipulator.center(Console.WindowWidth, input.Length);
+
+            CurrentForm.Refresh();
+            Console.ReadKey();
+            CurrentForm = MainForm;
+
         }
 
         static void Main(string[] args)
         {
             //Initialize Form Configs
+           
             MainForm = new CForm(80, 15);
             MainForm.AddElement(new ElementText("Sean's Exercises", ConsoleManipulator.center(Console.WindowWidth, "Sean's Exercises".Length) , 1));
 
-
-                Console.Clear();
                 //ConsoleManipulator.centerPrint("Sean's Exercises\n");
                 ExerciseManager.Add(new Exercise("Guessing Game", guessingGame));
                 ExerciseManager.Add(new Exercise("String Conversion", stringConversion));
@@ -204,7 +250,9 @@ namespace ConsoleApplication1
                     ExerciseManager.Pass(CurrentForm.SelectedIndex);
                 }
                 //while (ExerciseManager.Pass() == false) ;
+                CurrentForm.Refresh();
             }
+            
         }
     }
 }
