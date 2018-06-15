@@ -25,14 +25,6 @@ namespace ConsoleApplication1
             ExList.Add(exercise);
         }
 
-        public static void Display()
-        {
-            for (int i = 0; i < ExList.Count; i++)
-            {
-                ConsoleManipulator.centerPrint("[" + (i + 1) + "] " + ExList[i].ExerciseName + "\n");
-            }
-        }
-
         public static bool Pass(int i)
         {
             ExList[i].runEx(ExList[i]);

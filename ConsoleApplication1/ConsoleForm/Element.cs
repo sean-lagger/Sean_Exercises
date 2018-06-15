@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsoleForm
 {
-    public class Element
+    public abstract class Element
     {
         private static int highest_id = 0;
+
+        private int _x;
+        private int _y;
 
         public Element()
         {
@@ -35,9 +38,39 @@ namespace ConsoleForm
         {
             X = px;
             Y = py;
-      }
+        } 
+
+        public int ID { get; set; }
+
+        public int X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+
+        public int Y {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
 
 
+        public CForm ParentForm { get; set; }
+        public bool Centered { get; set; }
+        public int Length { get; set; } //offset of two if borders are enabled
+        public string ElementType { get; protected set; }
+        public ConsoleColor BackgroundColor { get; set; }
 
         public virtual void Display()
         {
@@ -45,14 +78,6 @@ namespace ConsoleForm
             Console.CursorTop = Y;
         }
 
-        public int ID { get; set; }
-        public int X { get; set; } 
-        public int Y { get; set; }
-        public CForm ParentForm { get; set; }
-        public bool Centered { get; set; }
-        public int Length { get; set; } //offset of two if borders are enabled
-        public string ElementType { get; protected set; }
-        
-        
+
     }
 }

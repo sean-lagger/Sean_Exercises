@@ -12,7 +12,7 @@ namespace ConsoleForm
 
         public ElementInput(int index) : base(index)
         {
-            _text = " ";
+            _untampered_text = " ";
             ElementType = "Input";
             Input = "";
         }
@@ -26,6 +26,7 @@ namespace ConsoleForm
 
             set
             {
+                
                 if(value.Length < MaxInputLength)
                 {
                     _input = value;
@@ -36,16 +37,17 @@ namespace ConsoleForm
                         _input = value[1].ToString();
                     }
                 }
+
             }
         }
 
         public int MaxInputLength { get; set; }
         public bool ReplaceOnMax { get; set; } //Replace Input field with next character once the Maximum input length has been reached (Designed for Guessing Game) else, Input field will not accept any more inputs.
-        public bool Eraseable { get; set; } //Whether or not the user can backspace;
+        public bool Eraseable { get; set; } //Whether or not the user can backspace; NOT YET IMPLEMENTED
 
         public override void Display()
         {
-            _text = ">" + Input + "<";
+            _untampered_text = ">" + Input + "<";
             base.Display();
         }
 

@@ -13,6 +13,7 @@ namespace ConsoleForm
         {
             SelectedIndex = 0;
             Console.CursorVisible = false;
+            BackgroundColor = ConsoleColor.Black;
         }
 
         public CForm(int c_width, int c_height) : this()
@@ -26,8 +27,12 @@ namespace ConsoleForm
         //Properties
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public List<Element> Elements = new List<Element>();
-        private List<ElementSelectable> Selectables = new List<ElementSelectable>();
+
+        private List<Element> Elements = new List<Element>();
+        private List<Element> Selectables = new List<Element>();
+
+        public static List<int> UpdatedRows = new List<int>();
+
         public String FormName { get; set; }
 
         public int SelectedIndex {
@@ -52,9 +57,14 @@ namespace ConsoleForm
             }
         }
 
+        public ConsoleColor BackgroundColor { get; set; }
+        public ConsoleColor SelectedColor { get; set; }
 
-        public string Selected
+        
+
+        public string SelectedType
         {
+            
             get
             {
                 return Selectables[SelectedIndex].ElementType;
@@ -77,14 +87,21 @@ namespace ConsoleForm
                 _maxIndex++;
                 Selectables.Add(e as ElementSelectable);
             }
-
-           
-            Elements.Add(e);
+            e.BackgroundColor = BackgroundColor;
+            Elements.Add(e); 
         }
 
-        public void pushChar (char key)
+        public void RemoveElement(int _id)
         {
-            if (Selected == "Input")
+            foreach(Element e in Elements)
+            {
+
+            }
+        }
+
+        public void pushChar (char key) //The Form pushes a char value onto the selected element (ElementInput)
+        {
+            if (SelectedType == "Input")
             {
                 ElementInput input = SelectedElement as ElementInput;
                 input.Input += key;
@@ -92,23 +109,42 @@ namespace ConsoleForm
             }
         }
 
-        public void popChar()
+        public void popChar() //Simulates a backspace on the selected input;
         {
-            ElementInput input = SelectedElement as ElementInput;
-            if (Selected == "Input" && input.Input.Length > 0 && input.ReplaceOnMax != true)
+            
+            if (SelectedType == "Input")
             {
-                input.Input = input.Input.Remove(input.Input.Length - 1);
+                ElementInput input = SelectedElement as ElementInput;
+                if (input.Input.Length > 0 && input.ReplaceOnMax != true)
+                {
+                    input.Input = input.Input.Remove(input.Input.Length - 1);
+                }
+                
             }
         }
 
         public void Refresh() //Redraw all elements
         {
+            Console.BackgroundColor = BackgroundColor;
             if (Console.WindowWidth != Width || Console.WindowHeight != Height)
             {
                 Console.WindowWidth = Width;
                 Console.WindowHeight = Height;
             }
+
             Console.Clear();
+
+            /*if (CForm.UpdatedRows.Count > 0)
+            {
+                for (int i = 0; i < CForm.UpdatedRows.Count; i++)
+                {
+                    Console.CursorLeft = 0;
+                    Console.CursorTop = CForm.UpdatedRows[i];
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    CForm.UpdatedRows.Clear();
+                }
+            }*/
+
             foreach (Element e in Elements)
             {
                 e.Display();

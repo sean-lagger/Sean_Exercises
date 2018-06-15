@@ -8,49 +8,45 @@ namespace ConsoleForm
 {
     public class ElementText : Element
     {
-        protected string _text;
+        protected string _untampered_text;
+        private string _contentText;
 
         public ElementText() : base()
         {
             ContentText = "NULL";
-            _text = ContentText;
-            IsBordered = false;
+            _untampered_text = ContentText;
         }
 
         public ElementText(string text) : base()
         {
             ContentText = text;
-            _text = ContentText;
-            IsBordered = false;
+            _untampered_text = ContentText;
         }
 
         public ElementText(string text, int px, int py) : base(px, py)
         {
             ContentText = text;
-            _text = ContentText;
-            IsBordered = false;
+            _untampered_text = ContentText;
         }
 
         public override void Display()
         {
-            int Temp_X = X;
-            if (IsBordered) // DON'T USE YET
-            {
-                ContentText = "[" + ContentText + "]";
-            }else
-            {
-            }
-
-            if (Centered)
-            {
-              //  X = 
-            }
-
+            int Temp_X = X;          
             base.Display();
+            Console.BackgroundColor = BackgroundColor;
             Console.Write(ContentText);
+            Console.BackgroundColor = ParentForm.BackgroundColor;
         }
 
-        public string ContentText { get; set; } //the text content of the element (e.g the string that it displays) 
-        public bool IsBordered { get; set; }
+        public string ContentText {
+            get
+            {
+                return _contentText;
+            }
+            set
+            {
+                _contentText = value;
+            }
+        } //the text content of the element (e.g the string that it displays) 
     }
 }

@@ -28,17 +28,20 @@ namespace ConsoleForm
             int Temp_X = X;
             if (ParentForm.SelectedIndex == Index)
             {
-                ContentText = "[" + _text + "]";
+                this.BackgroundColor = ParentForm.SelectedColor;
+                ContentText = "[" + _untampered_text + "]";
                 X -= 1;
             }else
             {
-                ContentText = _text;
+                this.BackgroundColor = ParentForm.BackgroundColor;
+                ContentText = _untampered_text;
             }
+            
             base.Display();
             X = Temp_X;
         }
 
-        public virtual void Activate<T> (Action<T> toRun)
+        public virtual void Activate<T> (Action<T> toRun) //UNIMPLEMENTED
         {
             
         }
