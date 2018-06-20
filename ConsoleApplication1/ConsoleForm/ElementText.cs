@@ -33,7 +33,7 @@ namespace ConsoleForm
         {
             int Temp_X = X;          
             base.Display();
-            Console.BackgroundColor = BackgroundColor;
+            Console.BackgroundColor = this.BackgroundColor;
             Console.Write(ContentText);
             Console.BackgroundColor = ParentForm.BackgroundColor;
         }

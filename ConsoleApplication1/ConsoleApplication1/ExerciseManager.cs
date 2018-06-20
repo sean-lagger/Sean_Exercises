@@ -14,14 +14,14 @@ namespace ConsoleApplication1
 
         public static int ExCount = ExList.Count;
 
-        public static void Add(Exercise exercise)
+        public static void Add(Exercise exercise, CForm form) //Not much customizability here
         {
-            ElementSelectable es = new ElementSelectable(ExList.Count, exercise.ExerciseName);
+            ElementSelectable es = new ElementSelectable(exercise.ExerciseName);
             double x = Console.WindowWidth / 2 - (es.ContentText.Length / 2);
             es.X = ConsoleManipulator.center(Console.WindowWidth, es.ContentText.Length);
-            es.Y = 4 + ExList.Count() * 2;
+            es.Y = 4 + ExList.Count() * 2; //HARDCODED
             es.Centered = true;
-            Program.MainForm.AddElement(es);
+            form.AddElement(es);
             ExList.Add(exercise);
         }
 

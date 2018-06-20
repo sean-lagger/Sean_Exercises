@@ -17,9 +17,10 @@ namespace ConsoleForm
         {
             ID = highest_id++;
             ElementType = "element";
-            X = 0;
-            Y = 0;
+            X = 1;
+            Y = 1;
             Length = 1;
+            isEnabled = true;
         }
 
         public Element(string type): this()
@@ -65,10 +66,10 @@ namespace ConsoleForm
             }
         }
 
-
+        public bool isEnabled;
         public CForm ParentForm { get; set; }
         public bool Centered { get; set; }
-        public int Length { get; set; } //offset of two if borders are enabled
+        public int Length { get; set; } //offset of two if borders are enabled **UNIMPLEMENTED
         public string ElementType { get; protected set; }
         public ConsoleColor BackgroundColor { get; set; }
 

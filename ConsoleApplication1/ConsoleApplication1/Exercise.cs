@@ -16,7 +16,6 @@ namespace ConsoleApplication1
 
         //Properties
         public string ExerciseName { get; }
-        public CForm ExForm { get; set; }
 
         public Action<Exercise> runEx;
     }

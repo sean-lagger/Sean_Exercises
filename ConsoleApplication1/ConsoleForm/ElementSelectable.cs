@@ -8,25 +8,25 @@ namespace ConsoleForm
 {
     public class ElementSelectable : ElementText
     {
-        public ElementSelectable(int index): base()
+        public ElementSelectable(): base()
         {
             ElementType = "Selectable";
-            Index = index;
         }
 
-        public ElementSelectable(int index, string _text) : base(_text)
+        public ElementSelectable( string _text) : base(_text)
         {
-            Index = index;
             ElementType = "Selectable";
         }
 
         //Properties
-        public int Index { get; private set; } 
+        public int Index { get; private set; }
+
+        public int SelectedReturn { get; set; } //Rudimentary on_select return value;
 
         public override void Display()
         {
             int Temp_X = X;
-            if (ParentForm.SelectedIndex == Index)
+            if (ParentForm.SelectedElement == this)
             {
                 this.BackgroundColor = ParentForm.SelectedColor;
                 ContentText = "[" + _untampered_text + "]";

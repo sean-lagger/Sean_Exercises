@@ -8,12 +8,14 @@ namespace ConsoleForm
 
         private int _index = 0;
         private int _maxIndex = 0;
+       
 
         public CForm()
         {
             SelectedIndex = 0;
             Console.CursorVisible = false;
             BackgroundColor = ConsoleColor.Black;
+            FormKeyHandler = new ConsoleForm.KeyHandler();
         }
 
         public CForm(int c_width, int c_height) : this()
@@ -27,11 +29,11 @@ namespace ConsoleForm
         //Properties
         public int Width { get; private set; }
         public int Height { get; private set; }
-
+        
         private List<Element> Elements = new List<Element>();
-        private List<Element> Selectables = new List<Element>();
+        private List<ElementSelectable> Selectables = new List<ElementSelectable>();
 
-        public static List<int> UpdatedRows = new List<int>();
+        public static List<int> UpdatedRows = new List<int>(); //**UNIMPLEMENTED
 
         public String FormName { get; set; }
 
@@ -57,11 +59,28 @@ namespace ConsoleForm
             }
         }
 
+        public void moveNext()
+        {
+            ++SelectedIndex;
+            while (!SelectedElement.isEnabled)
+            {
+                SelectedIndex++;
+            }
+        }
+
+        public void movePrevious()
+        {
+            --SelectedIndex;
+            while (!SelectedElement.isEnabled)
+            {
+                SelectedIndex--;
+            }
+        }
+
         public ConsoleColor BackgroundColor { get; set; }
         public ConsoleColor SelectedColor { get; set; }
-
-        
-
+        public KeyHandler FormKeyHandler { get; set; }
+     
         public string SelectedType
         {
             
@@ -87,26 +106,20 @@ namespace ConsoleForm
                 _maxIndex++;
                 Selectables.Add(e as ElementSelectable);
             }
-            e.BackgroundColor = BackgroundColor;
-            Elements.Add(e); 
+            Elements.Add(e);
+            e.BackgroundColor = this.BackgroundColor;
         }
 
-        public void RemoveElement(int _id)
+
+        public bool pushChar (char key) //The Form pushes a char value onto the selected element (ElementInput)
         {
-            foreach(Element e in Elements)
+            if (SelectedType == "Input" && (Char.IsLetterOrDigit(key) || Char.IsSymbol(key) || Char.IsSeparator(key) || Char.IsPunctuation(key)))
             {
-
+                ElementInput e = SelectedElement as ElementInput;
+                e.Input += key;
+                return true;
             }
-        }
-
-        public void pushChar (char key) //The Form pushes a char value onto the selected element (ElementInput)
-        {
-            if (SelectedType == "Input")
-            {
-                ElementInput input = SelectedElement as ElementInput;
-                input.Input += key;
-
-            }
+            return false;
         }
 
         public void popChar() //Simulates a backspace on the selected input;
@@ -123,6 +136,30 @@ namespace ConsoleForm
             }
         }
 
+        public void AwaitKey()
+        {
+           FormKeyHandler.PassKey(Console.ReadKey(true));
+           
+        }
+
+        public void RemoveElement(Element e)
+        {
+            Elements.Remove(Elements.Find(r => r.ID == e.ID));
+
+            if (e is ElementSelectable)
+            {
+              Selectables.Remove(Selectables.Find(r => r.ID == e.ID));
+                _maxIndex--;
+            }
+                
+        }
+
+
+        public void Clear(Element e)
+        {
+            Elements.Clear();
+        }
+
         public void Refresh() //Redraw all elements
         {
             Console.BackgroundColor = BackgroundColor;
@@ -134,23 +171,14 @@ namespace ConsoleForm
 
             Console.Clear();
 
-            /*if (CForm.UpdatedRows.Count > 0)
-            {
-                for (int i = 0; i < CForm.UpdatedRows.Count; i++)
-                {
-                    Console.CursorLeft = 0;
-                    Console.CursorTop = CForm.UpdatedRows[i];
-                    Console.Write(new string(' ', Console.WindowWidth));
-                    CForm.UpdatedRows.Clear();
-                }
-            }*/
-
             foreach (Element e in Elements)
             {
                 e.Display();
             }
 
         }
+
+
 
     }
 }

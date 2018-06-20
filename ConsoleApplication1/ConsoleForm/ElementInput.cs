@@ -10,7 +10,7 @@ namespace ConsoleForm
     {
         private string _input;
 
-        public ElementInput(int index) : base(index)
+        public ElementInput() : base()
         {
             _untampered_text = " ";
             ElementType = "Input";
