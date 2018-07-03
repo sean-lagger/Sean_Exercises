@@ -1,0 +1,36 @@
+﻿@model ShoppingCartExercise.Models.UserModel
+
+@{
+    ViewBag.Title = "Register";
+    ViewBag.Message = "Register Account";
+}
+
+
+<h1>Register Account</h1>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="edit-label">
+        @Html.LabelFor(model=>model.UserData.Username)
+    </div>
+
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserData.Username)
+        @Html.ValidationMessageFor(model=> model.UserData.Username)
+    </div>
+
+    <div class="edit-label">
+        @Html.LabelFor(model => model.UserData.Password)
+    </div>
+
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserData.Password, new { htmlAttributes = new { type="password" } })
+        @Html.ValidationMessageFor(model => model.UserData.Password)
+    </div>
+
+    <p>
+        <input type="submit" value="Register" />
+    </p>
+
+}
+
