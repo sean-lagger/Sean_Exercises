@@ -1,0 +1,14 @@
+﻿@model ShoppingCartExercise.Models.InventoryModel
+
+@{
+    var enumItems = Model.ItemList.GetEnumerator();
+    <div class="row" style="margin:auto;">
+        @while (enumItems.MoveNext())
+            {
+            <div class="col-md-4 col-sm-4 col-lg-4 item-column" style="">
+                @Html.Partial("_InventoryView", enumItems.Current);
+            </div>
+        }
+    </div>
+}
+

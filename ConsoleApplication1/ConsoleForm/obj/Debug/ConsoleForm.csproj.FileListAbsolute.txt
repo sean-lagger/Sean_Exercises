@@ -1,0 +1,5 @@
+E:\Projects\Sean_Exercises\ConsoleApplication1\ConsoleForm\bin\Debug\ConsoleForm.dll
+E:\Projects\Sean_Exercises\ConsoleApplication1\ConsoleForm\bin\Debug\ConsoleForm.pdb
+E:\Projects\Sean_Exercises\ConsoleApplication1\ConsoleForm\obj\Debug\ConsoleForm.dll
+E:\Projects\Sean_Exercises\ConsoleApplication1\ConsoleForm\obj\Debug\ConsoleForm.pdb
+E:\Projects\Sean_Exercises\ConsoleApplication1\ConsoleForm\obj\Debug\ConsoleForm.csprojResolveAssemblyReference.cache

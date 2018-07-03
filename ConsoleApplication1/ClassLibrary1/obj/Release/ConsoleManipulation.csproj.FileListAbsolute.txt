@@ -1,0 +1,5 @@
+E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\bin\Release\ClassLibrary1.dll
+E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\bin\Release\ClassLibrary1.pdb
+E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\obj\Release\ConsoleManipulation.csprojResolveAssemblyReference.cache
+E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\obj\Release\ClassLibrary1.dll
+E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\obj\Release\ClassLibrary1.pdb

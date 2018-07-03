@@ -1,0 +1,32 @@
+﻿@model ShoppingCartExercise.Models.UserModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Log In</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="edit-label">
+        @Html.LabelFor(model => model.UserData.Username)
+    </div>
+
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserData.Username)
+        @Html.ValidationMessageFor(model => model.UserData.Username)
+    </div>
+
+    <div class="edit-label">
+        @Html.LabelFor(model => model.UserData.Password)
+    </div>
+
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserData.Password)
+        @Html.ValidationMessageFor(model => model.UserData.Password)
+    </div>
+
+    <p>
+        <input type="submit" value="Log In" />
+    </p>
+}
