@@ -1,5 +1,0 @@
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\bin\Debug\ShoppingCartExercise.Common.dll
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\bin\Debug\ShoppingCartExercise.Common.pdb
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.dll
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.pdb
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.csprojResolveAssemblyReference.cache
