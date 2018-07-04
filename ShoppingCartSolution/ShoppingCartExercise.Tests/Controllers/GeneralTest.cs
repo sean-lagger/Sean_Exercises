@@ -80,7 +80,7 @@ namespace ShoppingCartExercise.Tests.Controllers
         public void ItemSaveTest()
         {
             var item = new Item { ID = 1, Name = "TestItem", Description = "Our Latest Product!", ImagePath = "item_1.jpg" };
-            var item2 = new Item { ID = 2, Name = "TestItem2", Description = "Our Latest Product!2", ImagePath = "item_2.jpg" };
+            var item2 = new Item { ID = 2, Name = "TestItem2", Description = "Our Latest Product!2", ImagePath = "item_2.png" };
             var item3 = new Item { ID = 3, Name = "TestItem3", Description = "Our Latest Product!3", ImagePath = "item_1.jpg" };
             var repo = new ItemRepository();
 
@@ -108,20 +108,20 @@ namespace ShoppingCartExercise.Tests.Controllers
         {
             var inventory = new Inventory { InventoryName = "Experimental Inventory", ID = 1 };
 
-            inventory.Items.Add(new InventoryItem { ItemID = 1, Price = 100, Stock = 1 });
-            inventory.Items.Add(new InventoryItem { ItemID = 2, Price = 200, Stock = 4 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
-            inventory.Items.Add(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 1, Price = 100, Stock = 1 });
+            inventory.AddItem(new InventoryItem { ItemID = 2, Price = 200, Stock = 4 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
+            inventory.AddItem(new InventoryItem { ItemID = 3, Price = 300, Stock = 6 });
 
 
             var repo = new InventoryRepository();

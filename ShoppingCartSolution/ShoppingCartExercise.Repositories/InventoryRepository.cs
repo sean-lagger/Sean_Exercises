@@ -13,9 +13,9 @@ namespace ShoppingCartExercise.Repositories
     {
         JavaScriptSerializer _jss = new JavaScriptSerializer();
 
-        private string pathToUser(User user)
+        private string pathToUser(int id)
         {
-            string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Users\" + user.ID + @"\user_inventory.json";
+            string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Users\" + id;
             return path;
         }
 
@@ -47,10 +47,10 @@ namespace ShoppingCartExercise.Repositories
             }
         }
 
-        public Inventory Load(User user, int id)
+        public Inventory Load(int uid, int id)
         {
             
-            return Load(pathToUser(user), id);
+            return Load(pathToUser(uid), id);
         }
 
         public bool Save(Inventory t, string path)
@@ -80,9 +80,9 @@ namespace ShoppingCartExercise.Repositories
             }
         }
 
-        public bool Save(Inventory t, User user)
+        public bool Save(Inventory t, int uid)
         {
-            return (Save(t, pathToUser(user)));
+            return (Save(t, pathToUser(uid)));
         }
     }
 }

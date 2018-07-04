@@ -1,0 +1,13 @@
+﻿@model ShoppingCartExercise.Models.ItemModel
+@{
+    ViewBag.Title = "ItemPage";
+}
+@{
+
+   <h2>@Model.ItemInfo.Name@@@Model.InvRef.MyInventory.InventoryName</h2>
+   <img width=300 height=300 src="~/Content/Images/@Model.ItemInfo.ImagePath"/>
+    <p>@Model.ItemInfo.Description</p>
+    <p>@Model.Price</p>
+    <p>@Model.Stock</p>
+
+}

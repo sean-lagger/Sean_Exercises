@@ -11,6 +11,7 @@ namespace ShoppingCartExercise
             bundles.Add(new ScriptBundle("~/bundles/sean").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/move.js",
+                "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/seanscript.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

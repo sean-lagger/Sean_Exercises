@@ -18,14 +18,25 @@ namespace ShoppingCartExercise.Models
             var invRepository = new InventoryRepository();
             var itemRepository = new ItemRepository();
             var inventory = invRepository.Load(path, id);
-
-            foreach (var i in inventory.Items)
+            if (inventory == null)
             {
-                ItemList.Add( new ItemModel { ItemInfo = itemRepository.Load(i.ItemID), Price=i.Price, Stock = i.Stock });
+                Exists = false;
             }
-
+            else
+            {
+                MyInventory = inventory;
+                Exists = true;
+                foreach (var i in inventory.Items)
+                {
+                    ItemList.Add(new ItemModel { ItemInfo = itemRepository.Load(i.ItemID), Price = i.Price, Stock = i.Stock, ItemSlot=i.InventorySlot, InvRef = this});
+                }
+            }
         }
 
+        public int UserID { get; set; }
+        public Inventory MyInventory { get; private set; }
+        public string Type { get; set; }
+        public bool Exists { get; set; }
         public List<ItemModel> ItemList = new List<ItemModel>();
 
        

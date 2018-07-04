@@ -14,6 +14,12 @@ namespace ShoppingCartExercise.Common
 
         }
 
+        public void AddItem(InventoryItem iitem)
+        {
+            iitem.InventorySlot = Items.Count;
+            Items.Add(iitem);
+        }
+
         public int ID { get; set; }
         public string InventoryName { get; set; }
         public List<InventoryItem> Items = new List<InventoryItem>();

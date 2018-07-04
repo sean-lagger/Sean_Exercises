@@ -8,8 +8,10 @@ namespace ShoppingCartExercise.Models
 {
     public struct ItemModel
     {
+        public int ItemSlot;
         public Item ItemInfo;
         public int Stock;
         public int Price;
+        public InventoryModel InvRef;
     }
 }

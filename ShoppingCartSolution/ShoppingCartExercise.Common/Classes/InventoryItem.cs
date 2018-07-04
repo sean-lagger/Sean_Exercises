@@ -35,6 +35,7 @@ namespace ShoppingCartExercise.Common
             Stock = stock;
         }
 
+        public int InventorySlot { get; set; } // I DON'T LIKE IT
         public int ItemID { get; set; }
         public int Price{ get; set; }
         public int Stock { get; set; }
