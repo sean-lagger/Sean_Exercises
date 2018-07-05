@@ -9,13 +9,11 @@ namespace ShoppingCartExercise
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/sean").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/move.js",
-                "~/Scripts/jquery.unobtrusive-ajax.js",
                 "~/Scripts/seanscript.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js" ));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

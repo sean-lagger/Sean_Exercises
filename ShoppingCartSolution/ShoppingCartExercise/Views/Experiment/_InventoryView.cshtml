@@ -1,5 +1,5 @@
 ﻿@model ShoppingCartExercise.Models.ItemModel
-<a href="@Url.Action("ItemPage", "Experiment", new { inventory_type=Model.InvRef.Type, inventory_id=Model.InvRef.MyInventory.ID,slot_item=Model.ItemSlot,user_id=Model.InvRef.UserID})" style="text-decoration:none;color:black;">
+<a class="myLink" href="@Url.Action("AddToCart", "Experiment", new { inventory_type=Model.InvRef.Type, inventory_id=Model.InvRef.MyInventory.ID,slot_item=Model.ItemSlot,user_id=Model.InvRef.UserID})" style="text-decoration:none;color:black;">
     <div class="item-container" style="width:100%;height:100%;padding:10px;">
         <div class="item-image" width=5% height=5% style="background-color:white;"><img src="~/Content/Images/@Model.ItemInfo.ImagePath" style="max-height:100%;max-width:100%;" /></div>
         <div class="item-info" style="margin:auto;width:80%">
@@ -12,3 +12,4 @@
         </div>
     </div>
 </a>
+

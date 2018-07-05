@@ -1,4 +1,5 @@
-﻿using ShoppingCartExercise.Common;
+﻿using Newtonsoft.Json;
+using ShoppingCartExercise.Common;
 using ShoppingCartExercise.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,7 @@ using System.Web;
 namespace ShoppingCartExercise.Models
 {
 
-
-
-    public class InventoryModel
+    public class InventoryModel //REFACTOR
     {
 
         public InventoryModel(string path, int id)
@@ -30,6 +29,23 @@ namespace ShoppingCartExercise.Models
                 {
                     ItemList.Add(new ItemModel { ItemInfo = itemRepository.Load(i.ItemID), Price = i.Price, Stock = i.Stock, ItemSlot=i.InventorySlot, InvRef = this});
                 }
+            }
+        }
+
+
+        public string GetPath()
+        {
+            if (Type == "main")
+            {
+                return HttpContext.Current.Server.MapPath(@"~\Data\Experimental");
+            }
+            else if (Type == "user")
+            {
+                return HttpContext.Current.Server.MapPath(@"~\Data\User");
+            }
+            else
+            {
+                return "";
             }
         }
 

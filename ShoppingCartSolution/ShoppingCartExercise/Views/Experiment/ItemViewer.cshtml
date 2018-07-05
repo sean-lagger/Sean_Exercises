@@ -4,7 +4,6 @@
     ViewBag.Title = "Inventory";
 }
 
-
 <h2>Experimental Inventory</h2>
 @Ajax.ActionLink("Inventory 1", "GetInventory", new { id = 1, type="main" }, new AjaxOptions { UpdateTargetId = "inv", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new {@class = "inventory-button"})
 @Ajax.ActionLink("Inventory 2", "GetInventory", new { id = 1, type = "user", user_id = 1 }, new AjaxOptions { UpdateTargetId = "inv", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "inventory-button" })
@@ -14,3 +13,4 @@
                 <div id="inv">@Html.Partial("_InventoryContainer", Model)</div>
             </div>
         </div>
+

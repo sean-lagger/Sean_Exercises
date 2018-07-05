@@ -10,8 +10,22 @@
          <div class="col-md-4 col-sm-4 col-lg-4 item-column" style="">
            @Html.Partial("_InventoryView", enumItems.Current)
         </div>
-      }
-    }else
+        }
+        <script>
+                  $(".myLink").click(function (e) {
+                      e.preventDefault();
+                      $.ajax({
+
+                         url: $(this).attr("href"), // comma here instead of semicolon
+                         success: function () {
+                            alert("Value Added");  // or any other indication if you want to show
+                         }
+
+                      });
+                  });
+        </script>
+    }
+    else
     {
         <h1>INVENTORY NOT FOUND!</h1>
     }

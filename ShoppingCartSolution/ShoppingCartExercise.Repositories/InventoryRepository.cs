@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Web.Script.Serialization;
+using System.Web;
+using Newtonsoft.Json;
 
 namespace ShoppingCartExercise.Repositories
 {
     public class InventoryRepository
     {
-        JavaScriptSerializer _jss = new JavaScriptSerializer();
-
         private string pathToUser(int id)
         {
-            string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Users\" + id;
+            string path = HttpContext.Current.Server.MapPath(@"~\Data\Users\" + id);
             return path;
         }
 
@@ -31,7 +31,7 @@ namespace ShoppingCartExercise.Repositories
 
                     using (StreamReader r = new StreamReader(path + @"\inventory_" + id + ".json"))
                     {
-                        toReturn = _jss.Deserialize<Inventory>(r.ReadToEnd());
+                        toReturn = JsonConvert.DeserializeObject<Inventory>(r.ReadToEnd());
                     }
 
                     return toReturn;
@@ -60,7 +60,7 @@ namespace ShoppingCartExercise.Repositories
 
                 //string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Users\" + user.ID; //CHANGE LATER
                 // string path = HttpContext.Current.Server.MapPath("~") + @"\Data\Users\" + user.Username;
-                string data = _jss.Serialize(t);
+                string data = JsonConvert.SerializeObject(t);
 
                 if (Directory.Exists(path))
                 {
