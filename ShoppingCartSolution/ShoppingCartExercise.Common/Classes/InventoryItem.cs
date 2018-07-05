@@ -1,43 +1,16 @@
-﻿using ShoppingCartExercise.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShoppingCartExercise.Common
+﻿namespace ShoppingCartExercise.Common.Classes
 {
-    public class InventoryItem : IPriceable
+    public class InventoryItem
     {
-
         public InventoryItem()
         {
-            ItemID = 0;
-            Stock = 0;
-            Price = 0;
+            Quantity = 1;
+            isInfinite = false;
         }
 
-        public InventoryItem(int itemID)
-        {
-            ItemID = itemID;
-        }
+        public int Quantity { get; set; }
+        public bool isInfinite { get; set; }
+        public string AppendedDescription { get; set; }
 
-        public InventoryItem(int itemID, int price)
-        {
-            ItemID = itemID;
-            Price = price;
-        }
-
-        public InventoryItem(int itemID, int price, int stock)
-        {
-            ItemID = itemID;
-            Price = price;
-            Stock = stock;
-        }
-
-        public int InventorySlot { get; set; } // I DON'T LIKE IT
-        public int ItemID { get; set; }
-        public int Price{ get; set; }
-        public int Stock { get; set; }
     }
 }
