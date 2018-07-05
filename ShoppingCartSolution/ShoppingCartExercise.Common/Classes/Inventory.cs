@@ -1,11 +1,10 @@
-﻿using ShoppingCartExercise.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShoppingCartExercise.Common
+namespace ShoppingCartExercise.Common.Classes
 {
     public class Inventory
     {
@@ -14,14 +13,9 @@ namespace ShoppingCartExercise.Common
 
         }
 
-        public void AddItem(InventoryItem iitem)
-        {
-            iitem.InventorySlot = Items.Count;
-            Items.Add(iitem);
-        }
-
+        public List<InventoryItem> SlotItems = new List<InventoryItem>();
         public int ID { get; set; }
         public string InventoryName { get; set; }
-        public List<InventoryItem> Items = new List<InventoryItem>();
+        public string Path { get; set; }
     }
 }
