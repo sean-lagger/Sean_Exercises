@@ -165,7 +165,26 @@ namespace ShoppingCartExercise.Tests.Controllers
             Assert.AreEqual(item1.ID, item2.ID);
         }
 
+        [TestMethod]
+        public void InventorySaveTest()
+        {
+            MarketInventory inventory = new MarketInventory {ID=1, InventoryName="Test Inventory" };
+            inventory.AddItem(new InventoryItem { AppendedDescription = "For Sale!", isInfinite = false, ItemInSlot = 1, Quantity = 10 });
+            inventory.AddItem(new InventoryItem { AppendedDescription = "Limited Offer Only!!!", isInfinite = false, ItemInSlot = 2, Quantity = 4 });
 
+            InventoryRepository invRepo = new InventoryRepository();
+
+            Assert.IsTrue(invRepo.Save(inventory, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\"));
+        }                         
+
+        [TestMethod]
+        public void InventoryLoadTest()
+        {
+            InventoryRepository invRepo = new InventoryRepository();
+            var inventory = invRepo.Load(@"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Market\inventory_1.json");
+            Console.WriteLine(inventory.InventoryName);
+            Assert.IsNotNull(inventory);
+        }
 
     }
 }

@@ -8,81 +8,63 @@ using System.IO;
 using System.Web.Script.Serialization;
 using System.Web;
 using Newtonsoft.Json;
+using ShoppingCartExercise.Common.Classes;
 
 namespace ShoppingCartExercise.Repositories
 {
-    public class InventoryRepository
+    public class InventoryRepository : BaseRepository<Inventory>
     {
-        //private string pathToUser(int id)
-        //{
-        //    string path = HttpContext.Current.Server.MapPath(@"~\Data\Users\" + id);
-        //    return path;
-        //}
+        public bool Save(Inventory inventory)
+        {
+             string path = HttpContext.Current.Server.MapPath(@"~\App_Data\");
+             return(Save(inventory, path));
 
-        //public Inventory Load(string path, int id)
-        //{
+        }
 
-        //    if (Directory.Exists(path))
-        //    {
-        //        try
-        //        {
-        //            var toReturn = new Inventory();
-        //            var itemRepo = new ItemRepository();
+        public bool Save(Inventory inventory, string path)
+        {
+            try
+            {
+                if (inventory is MarketInventory)
+                {
+                    path += @"Market\";
+                }
+                else if (inventory is UserInventory)
+                {
+                    path += @"Users\" + (inventory as UserInventory).OwningUserID + @"\";
+                }
 
-        //            using (StreamReader r = new StreamReader(path + @"\inventory_" + id + ".json"))
-        //            {
-        //                toReturn = JsonConvert.DeserializeObject<Inventory>(r.ReadToEnd());
-        //            }
+                return (FileWrite(path + "inventory_" + inventory.ID + ".json", JsonConvert.SerializeObject(inventory)));
 
-        //            return toReturn;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
-        //public Inventory Load(int uid, int id)
-        //{
-            
-        //    return Load(pathToUser(uid), id);
-        //}
+        public Inventory Load(string path)
+        {
+            try
+            {
+                return (FileLoad(path));
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-        //public bool Save(Inventory t, string path)
-        //{
-        //    try
-        //    {
+        public Inventory Load(int inventory_id)
+        {       
+            return (Load(HttpContext.Current.Server.MapPath(@"~\App_Data\Market\")));
+        }
 
-        //        //string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Users\" + user.ID; //CHANGE LATER
-        //        // string path = HttpContext.Current.Server.MapPath("~") + @"\Data\Users\" + user.Username;
-        //        string data = JsonConvert.SerializeObject(t);
-
-        //        if (Directory.Exists(path))
-        //        {
-        //            System.IO.File.WriteAllText(path + @"\inventory_" + t.ID + @".json", data);
-        //        }
-        //        else
-        //        {
-        //            Directory.CreateDirectory(path);
-        //            System.IO.File.WriteAllText(path + @"\inventory_" + t.ID + @".json", data);
-        //        }
-
-        //        return true;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return false;
-        //    }
-        //}
-
-        //public bool Save(Inventory t, int uid)
-        //{
-        //    return (Save(t, pathToUser(uid)));
-        //}
+        public Inventory Load(int inventory_id, int user_id)
+        {
+            return(Load(HttpContext.Current.Server.MapPath(@"~\App_Data\Users\" + user_id + @"\")));
+        }
     }
+
+
 }

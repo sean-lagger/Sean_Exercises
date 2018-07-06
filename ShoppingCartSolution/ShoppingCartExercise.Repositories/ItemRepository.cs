@@ -18,14 +18,9 @@ namespace ShoppingCartExercise.Repositories
         
         public bool Save(Item item)
         {
-            try
-            {
-                return(FileWrite(HttpContext.Current.Server.MapPath(@"~\App_Data\Items\")+item.ID+".json", JsonConvert.SerializeObject(item)));
-            }
-            catch
-            {
-                return false;
-            }
+
+            return(Save(item, HttpContext.Current.Server.MapPath(@"~\App_Data\Items\")+item.ID+".json"));
+
         }
 
         public bool Save(Item item, string path)
@@ -40,22 +35,22 @@ namespace ShoppingCartExercise.Repositories
             }
         }
 
-        public Item Load(int inventory_id)
+        public Item Load(int item_id)
         {
             try
             {
-                return (FileLoad(HttpContext.Current.Server.MapPath(@"~\App_Data\Items\") + inventory_id + ".json"));
+                return (Load(item_id, HttpContext.Current.Server.MapPath(@"~\App_Data\Items\") + item_id + ".json"));
             }catch
             {
                 return null;
             }
         }
 
-        public Item Load(int inventory_id, string path)
+        public Item Load(int item_id, string path)
         {
             try
             {
-                return (FileLoad(path + inventory_id + ".json"));
+                return (FileLoad(path + item_id + ".json"));
             }
             catch
             {
