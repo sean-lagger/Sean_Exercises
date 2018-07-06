@@ -16,6 +16,5 @@ namespace ShoppingCartExercise.Common.Classes
         public List<InventoryItem> SlotItems = new List<InventoryItem>();
         public int ID { get; set; }
         public string InventoryName { get; set; }
-        public string Path { get; set; }
     }
 }

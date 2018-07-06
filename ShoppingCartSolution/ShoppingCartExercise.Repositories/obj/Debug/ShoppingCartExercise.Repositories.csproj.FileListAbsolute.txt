@@ -8,3 +8,5 @@ E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositorie
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\Newtonsoft.Json.dll
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.csprojAssemblyReference.cache
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.csproj.CoreCompileInputs.cache

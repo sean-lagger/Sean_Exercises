@@ -2,4 +2,5 @@ E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\bin\
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\bin\Debug\ShoppingCartExercise.Common.pdb
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.dll
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.pdb
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.csprojResolveAssemblyReference.cache
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.csprojAssemblyReference.cache
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Common\obj\Debug\ShoppingCartExercise.Common.csproj.CoreCompileInputs.cache

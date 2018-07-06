@@ -43,7 +43,10 @@
     <Compile Include="Classes\Inventory.cs" />
     <Compile Include="Classes\InventoryItem.cs" />
     <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\MarketInventory.cs" />
+    <Compile Include="Classes\MarketInventoryItem.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\UserInventory.cs" />
     <Compile Include="Interfaces\IPriceable.cs" />
     <Compile Include="Interfaces\ISpecialPriceable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
