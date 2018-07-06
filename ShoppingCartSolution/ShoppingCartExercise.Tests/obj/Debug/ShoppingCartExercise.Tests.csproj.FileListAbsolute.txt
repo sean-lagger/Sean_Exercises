@@ -38,6 +38,9 @@ E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\bin\D
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\bin\Debug\System.Web.Optimization.xml
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\obj\Debug\ShoppingCartExercise.Tests.csprojResolveAssemblyReference.cache
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\obj\Debug\ShoppingCartExercise.Tests.dll
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\obj\Debug\ShoppingCartExercise.Tests.pdb
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\obj\Debug\ShoppingCartExercise.Tests.csprojAssemblyReference.cache
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\obj\Debug\ShoppingCartExercise.Tests.csproj.CoreCompileInputs.cache
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\bin\Debug\ShoppingCartExercise.dll.config
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Tests\obj\Debug\ShoppingCartExercise.Tests.csproj.CopyComplete

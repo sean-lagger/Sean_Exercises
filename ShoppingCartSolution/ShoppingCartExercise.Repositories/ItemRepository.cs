@@ -8,62 +8,60 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+using ShoppingCartExercise.Common.Classes;
 
 namespace ShoppingCartExercise.Repositories
 {
-    public class ItemRepository
+    public class ItemRepository : BaseRepository<Item>
     {
-        JavaScriptSerializer _jss = new JavaScriptSerializer();
-
+        
         public bool Save(Item item)
         {
-
-            try{    
-                string data = _jss.Serialize(item);
-                string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Items\"; //CHANGE LATER
-                // string path = HttpContext.Current.Server.MapPath("~") + @"\Data\Users\" + user.Username;
-                if (Directory.Exists(path))
-                {
-                    System.IO.File.WriteAllText(path + @"\" + item.ID + ".json", data);
-                }
-                else
-                {
-                    Directory.CreateDirectory(path);
-                    System.IO.File.WriteAllText(path + @"\" + item.ID + ".json", data);
-                }
-       
-                return true;
+            try
+            {
+                return(FileWrite(HttpContext.Current.Server.MapPath(@"~\App_Data\Items\")+item.ID+".json", JsonConvert.SerializeObject(item)));
             }
-            catch(Exception e)
+            catch
             {
                 return false;
-            }          
+            }
         }
 
-        public Item Load(int id)
+        public bool Save(Item item, string path)
         {
-            string path = @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\" + @"\Data\Items\";
-            if (Directory.Exists(path))
+            try
             {
-                try
-                {
-                    Item toReturn = new Item();
-                    using (StreamReader r = new StreamReader(path + @"\"+ id +".json"))
-                    {
-                        toReturn = _jss.Deserialize<Item>(r.ReadToEnd());
-                    }
-                    return toReturn;
-                }
-                catch(Exception e)
-                {
-                    return null;
-                }
-            }else
+                return(FileWrite(path, JsonConvert.SerializeObject(item)));
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Item Load(int inventory_id)
+        {
+            try
+            {
+                return (FileLoad(HttpContext.Current.Server.MapPath(@"~\App_Data\Items\") + inventory_id + ".json"));
+            }catch
             {
                 return null;
             }
         }
-        
+
+        public Item Load(int inventory_id, string path)
+        {
+            try
+            {
+                return (FileLoad(path + inventory_id + ".json"));
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
     }
 }

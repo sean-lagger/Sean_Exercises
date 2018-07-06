@@ -8,6 +8,7 @@ using ShoppingCartExercise;
 using ShoppingCartExercise.Controllers;
 using ShoppingCartExercise.Common;
 using ShoppingCartExercise.Repositories;
+using ShoppingCartExercise.Common.Classes;
 
 namespace ShoppingCartExercise.Tests.Controllers
 {
@@ -52,7 +53,7 @@ namespace ShoppingCartExercise.Tests.Controllers
         //    // Assert
         //    Assert.IsNotNull(result);
         //}
-        
+
         //[TestMethod]
         //public void UserSaveTest()
         //{
@@ -141,6 +142,28 @@ namespace ShoppingCartExercise.Tests.Controllers
         //    Assert.IsNotNull(inv);
 
         //}
+
+        [TestMethod]
+        public void ItemSaveTest()
+        {
+            Item item1 = new Item { ID = 1, DefaultDescription = "Our Latest Product", ImageSource = "image_1.jpg", ItemName = "TestItem" };
+            Item item2 = new Item { ID = 2, DefaultDescription = "Our More Recent Product", ImageSource = "image_2.png", ItemName = "TestItem2" };
+            ItemRepository itemRepo = new ItemRepository();
+
+            Assert.IsTrue(itemRepo.Save(item1, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\" + +item1.ID + ".json"));
+            Assert.IsTrue(itemRepo.Save(item2, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\" + item2.ID + ".json"));
+        }
+
+        [TestMethod]
+        public void ItemLoadTest()
+        {
+            Item item1 = new Item { ID = 1, DefaultDescription = "Our Latest Product", ImageSource = "image_1.jpg", ItemName = "TestItem" };
+            ItemRepository itemRepo = new ItemRepository();
+
+            var item2 = itemRepo.Load(1, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\");
+
+            Assert.AreEqual(item1.ID, item2.ID);
+        }
 
 
 

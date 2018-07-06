@@ -2,7 +2,6 @@ E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositorie
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\ShoppingCartExercise.Repositories.pdb
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\ShoppingCartExercise.Common.dll
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\ShoppingCartExercise.Common.pdb
-E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.csprojResolveAssemblyReference.cache
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.dll
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.pdb
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
@@ -10,3 +9,4 @@ E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositorie
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\bin\Debug\Newtonsoft.Json.xml
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.csprojAssemblyReference.cache
 E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.csproj.CoreCompileInputs.cache
+E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise.Repositories\obj\Debug\ShoppingCartExercise.Repositories.csproj.CopyComplete
