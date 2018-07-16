@@ -8,6 +8,9 @@ namespace ShoppingCartExercise.Common.Classes
 {
     public class MarketInventory : Inventory
     {
+        public MarketInventory()
+        {
 
+        }
     }
 }

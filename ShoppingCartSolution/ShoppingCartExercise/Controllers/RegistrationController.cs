@@ -13,7 +13,7 @@ namespace ShoppingCartExercise.Controllers
     public class RegistrationController : Controller
     {
         // GET: Registration
-        
+
         public ActionResult Index()
         {
             return View();
@@ -22,17 +22,18 @@ namespace ShoppingCartExercise.Controllers
         [HttpPost]
         public ActionResult Index(UserModel userModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 UserRepository repo = new UserRepository();
                 if (repo.Save(userModel.UserData))
                 {
                     return RedirectToAction("Index", "Home");
-                }else
+                }
+                else
                 {
                     return Content("Error Saving File");
                 }
-                
+
             }
             return View(userModel);
         }

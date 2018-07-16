@@ -28,10 +28,11 @@ namespace ShoppingCartExercise
             if (context != null && context.Session != null)
             {
                 // use context to work the session
-                //if(Session["ShoppingCart"] == null)
-                //{
-                //    Session["ShoppingCart"] = JsonConvert.SerializeObject(new List<ShoppingCartExercise.Models.ShoppingCartModel>());
-                //}
+                if(Session["ShoppingCart"] == null)
+                {
+                    Session["ShoppingCart"] = JsonConvert.SerializeObject(new List<ShoppingCartExercise.Models.ItemModel>());
+                    Session["ShoppingCartTotal"] = 0;
+                }
                     
             }
         }

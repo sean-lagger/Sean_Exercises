@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingCartExercise.Common.Classes
 {
+
     public class MarketInventoryItem : InventoryItem
     {
         public MarketInventoryItem() : base()

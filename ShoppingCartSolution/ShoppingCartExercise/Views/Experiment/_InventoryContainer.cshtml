@@ -4,11 +4,11 @@
 @{
     if (Model != null)
     {
-      var enumItems = Model.ItemList.GetEnumerator();
+      var enumItems = Model.Items.GetEnumerator();
       while (enumItems.MoveNext())
       {
          <div class="col-md-4 col-sm-4 col-lg-4 item-column" style="">
-           @Html.Partial("_InventoryView", enumItems.Current)
+            enumItems.Current.StoredItem.ItemName;
         </div>
         }
         <script>

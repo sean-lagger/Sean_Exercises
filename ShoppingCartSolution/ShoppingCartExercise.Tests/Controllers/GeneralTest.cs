@@ -9,6 +9,7 @@ using ShoppingCartExercise.Controllers;
 using ShoppingCartExercise.Common;
 using ShoppingCartExercise.Repositories;
 using ShoppingCartExercise.Common.Classes;
+using System.Diagnostics;
 
 namespace ShoppingCartExercise.Tests.Controllers
 {
@@ -146,18 +147,34 @@ namespace ShoppingCartExercise.Tests.Controllers
         [TestMethod]
         public void ItemSaveTest()
         {
-            Item item1 = new Item { ID = 1, DefaultDescription = "Our Latest Product", ImageSource = "image_1.jpg", ItemName = "TestItem" };
-            Item item2 = new Item { ID = 2, DefaultDescription = "Our More Recent Product", ImageSource = "image_2.png", ItemName = "TestItem2" };
+
+            var itemList = new List<Item>();
+
+            itemList.Add(new Item { ID = itemList.Count+1, DefaultDescription = "Our Latest Product", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count+1), Category = "Category1"});
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Our Latest Product2", ImageSource = "item_2.png", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category1" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Our Latest Product3", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category1" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Our Latest Product4", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category1" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Our Latest Product5", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category1" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Limited Time Offer", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category2" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Limited Time Offer2", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category2" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Limited Time Offer3", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category2" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Limited Time Offer4", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category2" });
+            itemList.Add(new Item { ID = itemList.Count + 1, DefaultDescription = "Limited Time Offer5", ImageSource = "item_1.jpg", ItemName = "TestItem_" + (itemList.Count + 1), Category = "Category2" });
             ItemRepository itemRepo = new ItemRepository();
 
-            Assert.IsTrue(itemRepo.Save(item1, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\" + +item1.ID + ".json"));
-            Assert.IsTrue(itemRepo.Save(item2, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\" + item2.ID + ".json"));
+            foreach (var i in itemList)
+            {
+                itemRepo.Save(i, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\"+i.ID+".json");
+            }
+
+            Assert.IsTrue(true);
+
         }
 
         [TestMethod]
         public void ItemLoadTest()
         {
-            Item item1 = new Item { ID = 1, DefaultDescription = "Our Latest Product", ImageSource = "image_1.jpg", ItemName = "TestItem" };
+            Item item1 = new Item { ID = 1, DefaultDescription = "Our Latest Product", ImageSource = "image_1.jpg", ItemName = "TestItem"  };
             ItemRepository itemRepo = new ItemRepository();
 
             var item2 = itemRepo.Load(1, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\");
@@ -168,23 +185,127 @@ namespace ShoppingCartExercise.Tests.Controllers
         [TestMethod]
         public void InventorySaveTest()
         {
-            MarketInventory inventory = new MarketInventory {ID=1, InventoryName="Test Inventory" };
-            inventory.AddItem(new InventoryItem { AppendedDescription = "For Sale!", isInfinite = false, ItemInSlot = 1, Quantity = 10 });
-            inventory.AddItem(new InventoryItem { AppendedDescription = "Limited Offer Only!!!", isInfinite = false, ItemInSlot = 2, Quantity = 4 });
+            MarketInventory inventory = new MarketInventory { ID = 1, InventoryName = "Test Inventory" };
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "For Sale!", IsInfinite = false, ItemInSlot = 1, Quantity = 10, Price = 100});
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "Limited Offer Only!!!", IsInfinite = false, ItemInSlot = 2, Quantity = 2, Price = 200 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "For Sale!", IsInfinite = false, ItemInSlot = 3, Quantity = 10, Price = 100 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "Limited Offer Only!!!", IsInfinite = false, ItemInSlot = 4, Quantity = 2, Price = 300 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "For Sale!", IsInfinite = false, ItemInSlot = 5, Quantity = 10, Price = 100 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "Limited Offer Only!!!", IsInfinite = false, ItemInSlot = 6, Quantity = 2, Price = 150 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "For Sale!", IsInfinite = false, ItemInSlot = 7, Quantity = 10, Price = 100 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "Limited Offer Only!!!", IsInfinite = false, ItemInSlot = 8, Quantity = 2, Price = 150 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "For Sale!", IsInfinite = false, ItemInSlot = 9, Quantity = 10, Price = 100 });
+            inventory.AddItem(new MarketInventoryItem { AppendedDescription = "Limited Offer Only!!!", IsInfinite = false, ItemInSlot = 10, Quantity = 2, Price = 650 });
 
             InventoryRepository invRepo = new InventoryRepository();
 
             Assert.IsTrue(invRepo.Save(inventory, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\"));
-        }                         
+        }
 
         [TestMethod]
         public void InventoryLoadTest()
         {
             InventoryRepository invRepo = new InventoryRepository();
-            var inventory = invRepo.Load(@"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Market\inventory_1.json");
+            MarketInventory inventory = (invRepo.Load(@"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Market\inventory_1.json") as MarketInventory);
+
             Console.WriteLine(inventory.InventoryName);
             Assert.IsNotNull(inventory);
         }
+        [TestMethod]
+        public void PlusPlus()
+        {
+            int a = 5;
+            Assert.IsTrue(a++ == 5);
+        }
 
-    }
+
+
+            //[TestMethod]
+            //public void InventoryLoadItemsTest1()
+            //{
+            //    Stopwatch sw1 = new Stopwatch();
+            //    Stopwatch sw2 = new Stopwatch();
+
+            //    //Empty string is much faster than null;
+
+            //    //Test 1
+            //    InventoryRepository<MarketInventory> invRepo = new InventoryRepository<MarketInventory>();
+            //    ItemRepository itemRepo = new ItemRepository();
+            //    var inventory = invRepo.Load(@"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Market\inventory_1.json");
+
+            //    var listReturn = new List<Item>();
+            //    string[] category = { null, "", "Category1", "Category2" };
+
+
+            //    Console.WriteLine("--Test 1--");
+            //    sw2.Restart();
+            //    foreach (var j in category)
+            //    {
+            //        Console.WriteLine("Test 1 with Category: {0} ", j);
+            //        sw1.Restart();
+            //        foreach (var i in inventory.SlotItems)
+            //        {
+            //            Item k = itemRepo.Load(i.ItemInSlot, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\");
+
+            //            if (j != String.Empty && j != null)
+            //            {
+            //                if (k.Category == j)
+            //                {
+            //                    listReturn.Add(k);
+            //                    Console.WriteLine("Added {0} of category: {1} to Return List at : {2}", k.ItemName, j, sw1.ElapsedTicks);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                listReturn.Add(k);
+            //                Console.WriteLine("Added {0} of null category to Return List at : {1}", k.ItemName, sw1.ElapsedTicks);
+            //            }
+
+            //        }
+            //        sw1.Stop();
+            //        Console.WriteLine("Elapsed = {0}", sw1.ElapsedTicks);
+            //    }
+
+            //    sw2.Stop();
+            //    Console.WriteLine("Test 1 Total Elapsed  Time= {0}", sw2.ElapsedTicks);
+
+            //    Console.WriteLine("--Test 2--");
+            //    sw2.Restart();
+            //    List<Item> loadItems = new List<Item>();
+
+            //    foreach(var l in inventory.SlotItems)
+            //    {
+            //        loadItems.Add(itemRepo.Load(l.ItemInSlot, @"E:\Projects\Sean_Exercises\ShoppingCartSolution\ShoppingCartExercise\App_Data\Items\"));
+            //    }
+
+            //    foreach (var j in category)
+            //    {
+            //        Console.WriteLine("Test 2 with Category: {0} ", j);
+            //        sw1.Restart();
+            //        foreach (var i in loadItems)
+            //        {
+            //            if (j != String.Empty && j != null)
+            //            {
+            //                if (i.Category == j)
+            //                {
+            //                    listReturn.Add(i);
+            //                    Console.WriteLine("Added {0} of category: {1} to Return List at : {2}", i.ItemName, j, sw1.ElapsedTicks);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                listReturn.Add(i);
+            //                Console.WriteLine("Added {0} of null category to Return List at : {1}", i.ItemName, sw1.ElapsedTicks);
+            //            }
+
+            //        }
+            //        sw1.Stop();
+            //        Console.WriteLine("Elapsed = {0}", sw1.ElapsedTicks);
+            //    }
+            //    sw2.Stop();
+            //    Console.WriteLine("Test 2 Total Elapsed  Time= {0}", sw2.ElapsedTicks);
+
+            //    Assert.IsTrue(true);
+            //}
+        }
 }

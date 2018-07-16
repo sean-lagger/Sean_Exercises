@@ -39,7 +39,7 @@ namespace ShoppingCartExercise.Repositories
         {
             try
             {
-                return (Load(item_id, HttpContext.Current.Server.MapPath(@"~\App_Data\Items\") + item_id + ".json"));
+                return (Load(item_id, HttpContext.Current.Server.MapPath(@"~\App_Data\Items\")));
             }catch
             {
                 return null;

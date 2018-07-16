@@ -15,6 +15,7 @@ namespace ShoppingCartExercise.Common.Classes
 
         public int ID { get; set; }
         public string ItemName {get; set;}
+        public string Category { get; set; }
         public string DefaultDescription { get; set; }
         public string ImageSource { get; set; }
     }

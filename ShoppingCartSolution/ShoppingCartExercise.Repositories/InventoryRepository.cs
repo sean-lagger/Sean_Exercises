@@ -23,6 +23,7 @@ namespace ShoppingCartExercise.Repositories
 
         public bool Save(Inventory inventory, string path)
         {
+
             try
             {
                 if (inventory is MarketInventory)
@@ -34,7 +35,7 @@ namespace ShoppingCartExercise.Repositories
                     path += @"Users\" + (inventory as UserInventory).OwningUserID + @"\";
                 }
 
-                return (FileWrite(path + "inventory_" + inventory.ID + ".json", JsonConvert.SerializeObject(inventory)));
+                return (FileWrite(path + "inventory_" + inventory.ID + ".json", JsonConvert.SerializeObject(inventory,settings)));
 
             }
             catch
@@ -57,12 +58,12 @@ namespace ShoppingCartExercise.Repositories
 
         public Inventory Load(int inventory_id)
         {       
-            return (Load(HttpContext.Current.Server.MapPath(@"~\App_Data\Market\")));
+            return (Load(HttpContext.Current.Server.MapPath(@"~\App_Data\Market\inventory_" + inventory_id + ".json")));
         }
 
         public Inventory Load(int inventory_id, int user_id)
         {
-            return(Load(HttpContext.Current.Server.MapPath(@"~\App_Data\Users\" + user_id + @"\")));
+            return(Load(HttpContext.Current.Server.MapPath(@"~\App_Data\Users\" + user_id + @"\inventory_"+inventory_id+".json")));
         }
     }
 
