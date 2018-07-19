@@ -1,5 +1,0 @@
-E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.dll
-E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
-E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
-E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
-E:\Projects\Sean_Exercises\ConsoleApplication1\ClassLibrary1\obj\Debug\ConsoleManipulation.csprojResolveAssemblyReference.cache
