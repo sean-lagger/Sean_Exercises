@@ -1,0 +1,10 @@
+.greetings_animate
+{
+    opacity: 0;
+    height:0px;
+    transition: 1s;
+}
+
+.greetings{
+    height:20px;
+}

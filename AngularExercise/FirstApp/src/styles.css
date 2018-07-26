@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+@font-face {
+    font-family: "Android101";
+    src: url("fonts/Android101.ttf");
+    src: 
+    url("/fonts/Android101.otf") format("opentype"),
+    }
+
